@@ -1,0 +1,452 @@
+.site-footer {
+  color: #dce8e5;
+
+  background: #102f32;
+}
+
+/* Main footer */
+
+.footer-main {
+  padding: 42px 0 36px;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns:
+    1.55fr
+    1fr
+    1fr
+    1fr
+    1.35fr;
+
+  gap: 28px;
+}
+
+/* Brand */
+
+.footer-brand-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-mark {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #dceeea;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 6px;
+}
+
+.footer-brand-heading strong {
+  display: block;
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.footer-brand-heading span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9db8b4;
+
+  font-size: 0.6rem;
+}
+
+.footer-brand p {
+  max-width: 260px;
+
+  margin: 15px 0 18px;
+
+  color: #a9c0bd;
+
+  font-size: 0.64rem;
+  line-height: 1.7;
+}
+
+/* Social */
+
+.footer-socials {
+  display: flex;
+  gap: 6px;
+}
+
+.footer-socials button {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #a9c0bd;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.footer-socials button:hover {
+  color: white;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Columns */
+
+.footer-column h3,
+.footer-contact h3 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.footer-column-hindi {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #779995;
+
+  font-size: 0.52rem;
+}
+
+.footer-column ul {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin: 14px 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-column li a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #a9c0bd;
+
+  font-size: 0.59rem;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.footer-column li a:hover {
+  color: white;
+
+  transform: translateX(2px);
+}
+
+/* Contact */
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.contact-icon {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: #b8d5d0;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border-radius: 4px;
+}
+
+.contact-item span {
+  display: block;
+
+  color: #779995;
+
+  font-size: 0.48rem;
+}
+
+.contact-item strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #d8e6e4;
+
+  font-size: 0.55rem;
+
+  font-weight: 700;
+}
+
+.footer-help-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  width: 100%;
+
+  margin-top: 13px;
+  padding: 8px;
+
+  color: #dbeae7;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+
+  border-radius: 4px;
+
+  font-size: 0.56rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.footer-help-button:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+/* Government strip */
+
+.footer-government-strip {
+  background: #0c272a;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.government-strip-content {
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.government-strip-content > div:not(.government-divider) {
+  flex: 1;
+}
+
+.government-strip-content strong {
+  display: block;
+
+  color: #dce9e7;
+
+  font-size: 0.59rem;
+  font-weight: 800;
+}
+
+.government-strip-content span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #718f8b;
+
+  font-size: 0.48rem;
+  line-height: 1.4;
+}
+
+.government-divider {
+  width: 1px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Bottom */
+
+.footer-bottom {
+  background: #081e20;
+}
+
+.footer-bottom-content {
+  min-height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.footer-copyright {
+  color: #66827f;
+
+  font-size: 0.5rem;
+}
+
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-legal-links a {
+  color: #78938f;
+
+  font-size: 0.5rem;
+
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  color: white;
+}
+
+.back-to-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  color: #a7bfbb;
+
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 4px;
+
+  padding: 5px 7px;
+
+  font-size: 0.49rem;
+
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  color: white;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .footer-grid {
+    grid-template-columns:
+      1.4fr
+      1fr
+      1fr;
+
+    row-gap: 30px;
+  }
+
+  .footer-brand {
+    grid-column: span 3;
+  }
+
+  .footer-contact {
+    grid-column: span 3;
+  }
+
+  .footer-contact {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-main {
+    padding: 34px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 26px 18px;
+  }
+
+  .footer-brand,
+  .footer-contact {
+    grid-column: span 2;
+  }
+
+  .government-strip-content {
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 18px 0;
+
+    gap: 12px;
+  }
+
+  .government-strip-content > div:not(.government-divider) {
+    width: 100%;
+  }
+
+  .government-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .footer-bottom-content {
+    flex-wrap: wrap;
+
+    padding: 12px 0;
+
+    gap: 10px;
+  }
+
+  .footer-legal-links {
+    order: 3;
+
+    width: 100%;
+
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 450px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand,
+  .footer-contact {
+    grid-column: span 1;
+  }
+
+  .footer-legal-links {
+    gap: 9px;
+  }
+}

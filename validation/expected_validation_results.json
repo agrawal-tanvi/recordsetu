@@ -1,0 +1,75 @@
+{
+  "description": "Expected validation results for selected test records",
+  "records": [
+    {
+      "record_id": "REC-001",
+      "expected_status": "VALID",
+      "expected_review_required": false,
+      "expected_errors": [],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-011",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["KHASRA_NUMBER_MISSING"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-015",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["OWNER_NAME_MISSING"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-019",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["VILLAGE_MISSING"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-022",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["DISTRICT_MISSING"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-025",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["AREA_INVALID_ZERO"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-026",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["AREA_INVALID_NEGATIVE"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-027",
+      "expected_status": "INVALID",
+      "expected_review_required": false,
+      "expected_errors": ["AREA_INVALID_EXCESSIVE"],
+      "expected_warnings": []
+    },
+    {
+      "record_id": "REC-029",
+      "expected_status": "REVIEW_REQUIRED",
+      "expected_review_required": true,
+      "expected_errors": [],
+      "expected_warnings": ["LOW_CONFIDENCE_OWNER"]
+    },
+    {
+      "record_id": "REC-030",
+      "expected_status": "REVIEW_REQUIRED",
+      "expected_review_required": true,
+      "expected_errors": [],
+      "expected_warnings": ["LOW_CONFIDENCE_AREA"]
+    }
+  ]
+}

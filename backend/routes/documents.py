@@ -1,9 +1,14 @@
 from pathlib import Path
 from uuid import uuid4
 
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from sqlalchemy.orm import Session
 
+from models.database import get_db
+from models.document import Document
 from schemas.document import DocumentUploadResponse
+
+
 router = APIRouter(
     prefix="/api/documents",
     tags=["Documents"],
@@ -19,12 +24,15 @@ MAX_FILE_SIZE = 50 * 1024 * 1024  # 50 MB
 
 
 @router.post("/upload", response_model=DocumentUploadResponse)
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+):
     """
     Upload a land record document.
 
-    The uploaded document is temporarily stored locally.
-    Later, it will be sent to the AI/OCR pipeline.
+    The uploaded document is stored locally and
+    its metadata is saved in the database.
     """
 
     if not file.filename:
@@ -55,6 +63,18 @@ async def upload_document(file: UploadFile = File(...)):
         )
 
     file_path.write_bytes(contents)
+
+    document = Document(
+        document_id=document_id,
+        original_filename=file.filename,
+        stored_filename=safe_filename,
+        file_type=extension,
+        file_size_bytes=len(contents),
+        status="UPLOADED",
+    )
+
+    db.add(document)
+    db.commit()
 
     return {
         "success": True,

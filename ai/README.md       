@@ -1,0 +1,51 @@
+# RecordSetu AI/OCR Module
+
+This module processes land-record documents using OCR and extracts important fields into structured JSON.
+
+## AI Pipeline
+
+Document / Image
+↓
+Preprocessing
+↓
+Hindi OCR
+↓
+OCR Confidence
+↓
+Field Extraction
+↓
+Final Confidence
+↓
+Structured JSON
+
+## Extracted Fields
+
+The AI/OCR module currently extracts:
+
+- Khasra Number
+- Owner Name
+- Village
+- District
+- Area
+- Area Unit
+
+## Output Format
+
+Example:
+
+```json
+{
+  "success": true,
+  "source": "ai/samples/land_record_20.png",
+  "ocr_text": "राज्य : उत्तर प्रदेश...",
+  "ocr_confidence": 0.92,
+  "fields": {
+    "khasra_no": "975",
+    "owner_name": "दीपक अग्रवाल",
+    "village": "नौगांव",
+    "district": "मथुरा",
+    "area": "0.950",
+    "area_unit": "हे०",
+    "confidence": 0.95
+  }
+}

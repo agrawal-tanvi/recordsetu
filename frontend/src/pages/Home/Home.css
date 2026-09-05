@@ -1,0 +1,262 @@
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-section {
+  background: linear-gradient(135deg, #eef6fa 0%, #ffffff 55%, #e9f3f7 100%);
+  padding: 70px 0;
+  border-bottom: 1px solid #dce5e9;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #dcecf3;
+  color: #0d4f73;
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  margin-bottom: 18px;
+}
+
+.hero-text h2 {
+  font-size: 48px;
+  line-height: 1.15;
+  color: #173f55;
+  margin-bottom: 20px;
+}
+
+.hero-text h2 span {
+  color: #0d6b8f;
+}
+
+.hero-text p {
+  max-width: 650px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #53636b;
+  margin-bottom: 30px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 13px 24px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: #0d4f73;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #083b56;
+}
+
+.secondary-button {
+  background: white;
+  color: #0d4f73;
+  border: 1px solid #0d4f73;
+}
+
+/* Search Card */
+
+.hero-search-card {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.09);
+  border: 1px solid #e1e8eb;
+}
+
+.hero-search-card h3 {
+  color: #173f55;
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.hero-search-card > p {
+  color: #68777d;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.search-field {
+  margin-bottom: 16px;
+}
+
+.search-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #37474f;
+  margin-bottom: 6px;
+}
+
+.search-field input,
+.search-field select {
+  width: 100%;
+  height: 43px;
+  padding: 0 12px;
+  border: 1px solid #cbd5da;
+  border-radius: 4px;
+  background: white;
+  color: #37474f;
+  outline: none;
+}
+
+.search-field input:focus,
+.search-field select:focus {
+  border-color: #0d6b8f;
+}
+
+.search-button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 4px;
+  background: #0d6b8f;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #094f6b;
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats-section {
+  background: white;
+  padding: 65px 0;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 40px;
+}
+
+.section-heading > span {
+  color: #0d6b8f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.section-heading h2 {
+  color: #173f55;
+  font-size: 32px;
+  margin: 10px 0 12px;
+}
+
+.section-heading p {
+  color: #68777d;
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: #f8fafb;
+  border: 1px solid #e1e8eb;
+  border-radius: 7px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.stat-card h3 {
+  color: #0d4f73;
+  font-size: 30px;
+  margin-bottom: 7px;
+}
+
+.stat-card p {
+  color: #68777d;
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .hero-text h2 {
+    font-size: 38px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 45px 0;
+  }
+
+  .hero-text h2 {
+    font-size: 32px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-button,
+  .secondary-button {
+    text-align: center;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

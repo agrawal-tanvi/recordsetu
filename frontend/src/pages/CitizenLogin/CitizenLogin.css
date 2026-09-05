@@ -1,0 +1,412 @@
+.citizen-login-page {
+  min-height: calc(100vh - 150px);
+  background: linear-gradient(
+    135deg,
+    #eef5f8 0%,
+    #f8fafc 50%,
+    #e8f1f5 100%
+  );
+
+  display: flex;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.citizen-login-container {
+  width: min(1150px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 70px;
+
+  align-items: center;
+}
+
+/* =========================
+   LEFT INFORMATION
+========================= */
+
+.citizen-info {
+  padding: 20px;
+}
+
+.citizen-badge {
+  display: inline-block;
+
+  background: #dcecf3;
+  color: #28547a;
+
+  padding: 9px 16px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.citizen-info h1 {
+  margin-top: 25px;
+
+  font-size: clamp(42px, 5vw, 62px);
+  line-height: 1.08;
+
+  color: #243b53;
+}
+
+.citizen-info h1 span {
+  display: block;
+  color: #39739a;
+}
+
+.citizen-info > p {
+  margin-top: 25px;
+
+  max-width: 650px;
+
+  font-size: 18px;
+  line-height: 1.7;
+
+  color: #607386;
+}
+
+/* Features */
+
+.citizen-features {
+  margin-top: 38px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.citizen-feature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 10px;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+
+  box-shadow: 0 4px 14px rgba(30, 60, 90, 0.08);
+}
+
+.citizen-feature h3 {
+  margin: 0;
+
+  font-size: 16px;
+  color: #29465f;
+}
+
+.citizen-feature p {
+  margin-top: 4px;
+
+  font-size: 14px;
+  color: #718096;
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.citizen-login-card {
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e1e8ed;
+
+  box-shadow:
+    0 18px 50px rgba(30, 60, 90, 0.12);
+}
+
+.login-card-header {
+  text-align: center;
+}
+
+.login-user-icon {
+  width: 62px;
+  height: 62px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background: #e6f0f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+}
+
+.login-card-header h2 {
+  margin: 0;
+
+  font-size: 28px;
+
+  color: #263f57;
+}
+
+.login-card-header p {
+  margin-top: 8px;
+
+  color: #718096;
+
+  font-size: 14px;
+}
+
+/* Form */
+
+.citizen-login-card form {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 21px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #34495e;
+}
+
+.form-group input {
+  width: 100%;
+
+  height: 48px;
+
+  padding: 0 14px;
+
+  border: 1px solid #ccd7df;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  color: #273b4d;
+
+  background: #fff;
+
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #315986;
+
+  box-shadow: 0 0 0 3px rgba(49, 89, 134, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #9aa7b2;
+}
+
+.forgot-password {
+  display: block;
+
+  margin-top: 8px;
+
+  text-align: right;
+
+  font-size: 13px;
+
+  color: #315986;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Main login button */
+
+.citizen-login-submit {
+  width: 100%;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #315986;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.citizen-login-submit:hover {
+  background: #26496f;
+}
+
+/* Divider */
+
+.login-divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 25px 0;
+
+  color: #9aa7b2;
+
+  font-size: 12px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e2e8ed;
+}
+
+/* OTP */
+
+.otp-login-button {
+  width: 100%;
+
+  height: 48px;
+
+  background: white;
+
+  color: #315986;
+
+  border: 1px solid #315986;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.otp-login-button:hover {
+  background: #f1f6f9;
+}
+
+/* Register */
+
+.new-user {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #718096;
+}
+
+.new-user a {
+  margin-left: 5px;
+
+  color: #315986;
+
+  font-weight: 700;
+}
+
+.new-user a:hover {
+  text-decoration: underline;
+}
+
+/* Back */
+
+.back-home {
+  margin-top: 25px;
+
+  text-align: center;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #edf0f2;
+}
+
+.back-home a {
+  color: #52697d;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.back-home a:hover {
+  color: #315986;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .citizen-login-container {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    max-width: 550px;
+  }
+
+  .citizen-info {
+    text-align: center;
+  }
+
+  .citizen-info > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .citizen-features {
+    text-align: left;
+  }
+}
+
+@media (max-width: 500px) {
+  .citizen-login-page {
+    padding: 30px 15px;
+  }
+
+  .citizen-login-card {
+    padding: 28px 22px;
+  }
+
+  .citizen-info h1 {
+    font-size: 40px;
+  }
+}

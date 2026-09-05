@@ -1,0 +1,1224 @@
+/* =========================================================
+   RECORDSETU — ADMIN LAND RECORDS
+========================================================= */
+
+.admin-records-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  color: #263f57;
+  font-family: "Segoe UI", Inter, Arial, sans-serif;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.records-topbar {
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 38px;
+
+  background: #fff;
+  border-bottom: 1px solid #e1e7ec;
+
+  position: relative;
+}
+
+.records-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: none;
+  background: transparent;
+
+  color: #41647e;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.records-back:hover {
+  color: #214d70;
+}
+
+
+.records-top-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  text-align: center;
+}
+
+.records-top-title span {
+  display: block;
+
+  color: #8a9aa8;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.records-top-title strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #2c4961;
+
+  font-size: 14px;
+}
+
+
+.records-top-right {
+  margin-left: auto;
+}
+
+.records-top-right span {
+  color: #8293a1;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.records-main {
+  width: min(1450px, 100%);
+
+  margin: auto;
+
+  padding: 34px 38px 35px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.records-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 26px;
+}
+
+.records-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #557b99;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.records-heading h1 {
+  margin: 0;
+
+  color: #203d57;
+
+  font-size: 29px;
+  font-weight: 700;
+
+  letter-spacing: -0.6px;
+}
+
+.records-heading p {
+  margin: 8px 0 0;
+
+  color: #788a99;
+
+  font-size: 12px;
+}
+
+
+.records-heading-actions {
+  display: flex;
+  gap: 9px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.records-primary-btn,
+.records-outline-btn {
+  height: 38px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 15px;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.records-primary-btn {
+  border: 1px solid #315f83;
+
+  background: #315f83;
+  color: #fff;
+}
+
+.records-primary-btn:hover {
+  background: #244e70;
+}
+
+
+.records-outline-btn {
+  border: 1px solid #ccd8e1;
+
+  background: #fff;
+  color: #47667d;
+}
+
+.records-outline-btn:hover {
+  border-color: #9fb4c4;
+  background: #f7fafc;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.records-summary {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  margin-bottom: 18px;
+
+  background: #fff;
+
+  border: 1px solid #e0e7ec;
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+
+.records-summary > div {
+  min-height: 88px;
+
+  display: grid;
+
+  grid-template-columns: 35px 1fr;
+
+  grid-template-rows: 25px 25px;
+
+  column-gap: 10px;
+
+  align-content: center;
+
+  padding: 0 22px;
+
+  border-right: 1px solid #e7edf1;
+}
+
+.records-summary > div:last-child {
+  border-right: none;
+}
+
+
+.records-summary svg {
+  grid-row: 1 / 3;
+
+  align-self: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 8px;
+
+  background: #edf3f7;
+  color: #4d708b;
+}
+
+
+.records-summary span {
+  align-self: end;
+
+  color: #8293a1;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+
+.records-summary strong {
+  align-self: start;
+
+  color: #2c475d;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   MAIN RECORD PANEL
+========================================================= */
+
+.records-panel {
+  background: #fff;
+
+  border: 1px solid #dfe6eb;
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 3px 12px rgba(38, 61, 80, 0.035);
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.records-toolbar {
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 14px 20px;
+
+  border-bottom: 1px solid #e6ebef;
+
+  box-sizing: border-box;
+}
+
+
+/* SEARCH */
+
+.records-search {
+  height: 38px;
+
+  width: min(560px, 60%);
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 11px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d5dfe6;
+  border-radius: 7px;
+
+  background: #fff;
+
+  color: #8293a1;
+
+  transition: 0.2s ease;
+}
+
+.records-search:focus-within {
+  border-color: #6e8da5;
+
+  box-shadow:
+    0 0 0 3px rgba(79, 116, 143, 0.08);
+}
+
+
+.records-search svg {
+  flex-shrink: 0;
+}
+
+
+.records-search input {
+  width: 100%;
+
+  margin-left: 9px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #334e64;
+
+  font-family: inherit;
+
+  font-size: 11px;
+}
+
+
+.records-search input::placeholder {
+  color: #a1adb7;
+}
+
+
+.records-clear {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #f0f3f5;
+
+  color: #70818f;
+
+  cursor: pointer;
+}
+
+
+/* FILTER */
+
+.records-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.records-filter-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #748796;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+.records-filters select {
+  height: 37px;
+
+  min-width: 135px;
+
+  padding: 0 30px 0 10px;
+
+  border: 1px solid #d5dfe6;
+  border-radius: 7px;
+
+  background: #fff;
+
+  color: #405c72;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.records-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+
+.records-table {
+  width: 100%;
+
+  min-width: 1050px;
+
+  border-collapse: collapse;
+
+  font-size: 10px;
+}
+
+
+.records-table thead {
+  background: #f7f9fa;
+}
+
+
+.records-table th {
+  height: 44px;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #e1e7ec;
+
+  color: #718493;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  text-align: left;
+
+  white-space: nowrap;
+}
+
+
+.records-table td {
+  height: 62px;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #edf1f4;
+
+  color: #667c8c;
+
+  white-space: nowrap;
+}
+
+
+.records-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+
+.records-table tbody tr:hover {
+  background: #fafcfd;
+}
+
+
+.records-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* RECORD ID */
+
+.record-id {
+  color: #315f83;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* OWNER */
+
+.record-owner {
+  color: #354f64;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* LOCATION */
+
+.record-location strong {
+  display: block;
+
+  color: #405b70;
+
+  font-size: 10px;
+}
+
+
+.record-location span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #94a1ac;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.record-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 5px 8px;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+.record-status.verified,
+.record-status.approved {
+  background: #eaf4ee;
+
+  color: #4d7b61;
+}
+
+
+.record-status.pending {
+  background: #faf2e4;
+
+  color: #99733f;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+========================================================= */
+
+.record-view-btn {
+  height: 29px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 0 9px;
+
+  border: 1px solid #d5dfe6;
+  border-radius: 6px;
+
+  background: #fff;
+
+  color: #426983;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.record-view-btn:hover {
+  border-color: #9db3c2;
+
+  background: #f5f9fb;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.records-empty {
+  height: 220px !important;
+
+  text-align: center;
+
+  vertical-align: middle;
+}
+
+
+.records-empty svg {
+  display: block;
+
+  margin: 0 auto 10px;
+
+  color: #9aabb7;
+}
+
+
+.records-empty strong {
+  display: block;
+
+  color: #4d6679;
+
+  font-size: 12px;
+}
+
+
+.records-empty span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #96a4ae;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.records-pagination {
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  border-top: 1px solid #e7edf1;
+}
+
+
+.records-pagination > span {
+  color: #8797a4;
+
+  font-size: 9px;
+}
+
+
+.records-pagination > span strong {
+  color: #526d81;
+}
+
+
+.records-pagination > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.records-pagination button {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dbe3e8;
+  border-radius: 5px;
+
+  background: #fff;
+
+  color: #637c8e;
+
+  font-size: 9px;
+
+  cursor: pointer;
+}
+
+
+.records-pagination button:hover:not(:disabled) {
+  background: #f4f8fa;
+}
+
+
+.records-pagination button:disabled {
+  color: #c3ccd3;
+
+  cursor: not-allowed;
+}
+
+
+.records-pagination button.pagination-active {
+  border-color: #315f83;
+
+  background: #315f83;
+
+  color: #fff;
+}
+
+
+.records-pagination > div > span {
+  padding: 0 4px;
+
+  color: #98a5ae;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.records-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 20px;
+
+  padding: 17px;
+
+  color: #8998a4;
+
+  font-size: 9px;
+}
+
+
+.records-footer span:not(:last-child)::after {
+  content: "•";
+
+  margin-left: 15px;
+
+  color: #c2cbd1;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.record-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(21, 42, 58, 0.45);
+}
+
+
+.record-modal {
+  width: min(600px, 100%);
+
+  background: #fff;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 18px 50px rgba(19, 41, 58, 0.2);
+}
+
+
+.record-modal-header {
+  min-height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 22px;
+
+  border-bottom: 1px solid #e6ebef;
+}
+
+
+.record-modal-header span {
+  color: #7890a1;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+
+.record-modal-header h2 {
+  margin: 5px 0 0;
+
+  color: #2b465d;
+
+  font-size: 18px;
+}
+
+
+.record-modal-header button {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #f1f4f6;
+
+  color: #657b8b;
+
+  cursor: pointer;
+}
+
+
+.record-modal-header button:hover {
+  background: #e7edf1;
+}
+
+
+/* MODAL ID */
+
+.record-modal-id {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 20px 22px;
+
+  padding: 13px;
+
+  border: 1px solid #dce6ec;
+  border-radius: 8px;
+
+  background: #f7fafc;
+
+  color: #426b87;
+}
+
+
+.record-modal-id span {
+  display: block;
+
+  color: #8798a5;
+
+  font-size: 9px;
+}
+
+
+.record-modal-id strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #315f83;
+
+  font-size: 12px;
+}
+
+
+/* DETAILS */
+
+.record-details-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 1px;
+
+  margin: 0 22px;
+
+  border: 1px solid #e1e8ed;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+
+.record-details-grid > div {
+  min-height: 66px;
+
+  padding: 12px 14px;
+
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border-bottom: 1px solid #e9eef2;
+}
+
+
+.record-details-grid > div:nth-child(odd) {
+  border-right: 1px solid #e9eef2;
+}
+
+
+.record-details-grid span {
+  display: block;
+
+  color: #8a9aa6;
+
+  font-size: 9px;
+}
+
+
+.record-details-grid strong {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #3c566b;
+
+  font-size: 11px;
+}
+
+
+/* MODAL ACTIONS */
+
+.record-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  padding: 20px 22px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .records-main {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .records-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .records-summary > div:nth-child(2) {
+    border-right: none;
+  }
+
+  .records-summary > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e7edf1;
+  }
+
+  .records-heading {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .records-heading-actions {
+    flex-shrink: 0;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .records-topbar {
+    height: 68px;
+
+    padding: 0 16px;
+  }
+
+  .records-top-title {
+    display: none;
+  }
+
+  .records-top-right {
+    display: none;
+  }
+
+
+  .records-main {
+    padding: 25px 15px;
+  }
+
+
+  .records-heading {
+    display: block;
+  }
+
+
+  .records-heading h1 {
+    font-size: 24px;
+  }
+
+
+  .records-heading p {
+    line-height: 1.6;
+  }
+
+
+  .records-heading-actions {
+    margin-top: 17px;
+  }
+
+
+  .records-heading-actions button {
+    flex: 1;
+  }
+
+
+  .records-summary {
+    grid-template-columns: 1fr;
+  }
+
+
+  .records-summary > div {
+    border-right: none !important;
+    border-bottom: 1px solid #e7edf1;
+  }
+
+
+  .records-summary > div:last-child {
+    border-bottom: none;
+  }
+
+
+  .records-toolbar {
+    display: block;
+
+    padding: 15px;
+  }
+
+
+  .records-search {
+    width: 100%;
+  }
+
+
+  .records-filters {
+    margin-top: 11px;
+
+    justify-content: space-between;
+  }
+
+
+  .records-filters select {
+    flex: 1;
+  }
+
+
+  .records-pagination {
+    display: block;
+
+    padding: 15px;
+  }
+
+
+  .records-pagination > div {
+    margin-top: 11px;
+  }
+
+
+  .records-footer {
+    flex-wrap: wrap;
+
+    line-height: 1.8;
+  }
+
+
+  .records-footer span:not(:last-child)::after {
+    display: none;
+  }
+
+
+  .record-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .record-details-grid > div:nth-child(odd) {
+    border-right: none;
+  }
+
+
+  .record-modal-actions {
+    flex-direction: column;
+  }
+
+
+  .record-modal-actions button {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .records-main {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+
+  .records-heading-actions {
+    flex-direction: column;
+  }
+
+
+  .records-summary > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+
+  .record-modal-overlay {
+    padding: 10px;
+  }
+
+
+  .record-modal-header,
+  .record-modal-id,
+  .record-details-grid,
+  .record-modal-actions {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+
+  .record-modal-header {
+    padding: 0;
+  }
+
+
+  .record-modal-id {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+
+  .record-details-grid {
+    margin-bottom: 0;
+  }
+
+}

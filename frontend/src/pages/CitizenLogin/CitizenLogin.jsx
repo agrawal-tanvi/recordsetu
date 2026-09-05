@@ -1,132 +1,276 @@
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  FileText,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
+
 import "./CitizenLogin.css";
 
 function CitizenLogin() {
+  const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Frontend-only login for now
+    navigate("/citizen-dashboard");
+  };
+
   return (
-    <main className="citizen-login-page">
-      <div className="citizen-login-container">
+    <div className="citizen-login-page">
 
-        {/* Left Information Section */}
-        <section className="citizen-info">
-          <span className="citizen-badge">
-            RECORDSETU • CITIZEN SERVICES
-          </span>
+      {/* ================= HEADER ================= */}
 
-          <h1>
-            Access Your
-            <span> Land Records</span>
-          </h1>
+      <header className="citizen-login-header">
 
-          <p>
-            Securely access your land records, ownership information,
-            property details and digital land services through RecordSetu.
-          </p>
+        <button
+          className="citizen-back-button"
+          onClick={() => navigate("/")}
+        >
+          <ArrowLeft size={17} />
+          Back to Home
+        </button>
 
-          <div className="citizen-features">
 
-            <div className="citizen-feature">
-              <div className="feature-icon">📄</div>
-              <div>
-                <h3>View Land Records</h3>
-                <p>Access your digital land record information.</p>
-              </div>
-            </div>
+        <div className="citizen-login-brand">
 
-            <div className="citizen-feature">
-              <div className="feature-icon">🏠</div>
-              <div>
-                <h3>Ownership Details</h3>
-                <p>View available property ownership information.</p>
-              </div>
-            </div>
-
-            <div className="citizen-feature">
-              <div className="feature-icon">🔒</div>
-              <div>
-                <h3>Secure Access</h3>
-                <p>Your information is protected through secure login.</p>
-              </div>
-            </div>
-
+          <div className="citizen-login-logo">
+            <FileText size={21} />
           </div>
-        </section>
 
-        {/* Login Card */}
-        <section className="citizen-login-card">
+          <div>
+            <strong>RecordSetu</strong>
+            <span>Land Records Portal</span>
+          </div>
 
-          <div className="login-card-header">
-            <div className="login-user-icon">👤</div>
+        </div>
 
-            <h2>Citizen Login</h2>
+      </header>
+
+
+      {/* ================= MAIN ================= */}
+
+      <main className="citizen-login-main">
+
+        <div className="citizen-login-card">
+
+
+          {/* CARD HEADER */}
+
+          <div className="citizen-login-card-header">
+
+            <div className="citizen-login-icon">
+              <User size={21} />
+            </div>
+
+            <span className="citizen-login-overline">
+              CITIZEN SERVICES
+            </span>
+
+            <h1>
+              Citizen Login
+            </h1>
 
             <p>
-              Login to access your RecordSetu services
+              Access your land records and track
+              your applications securely.
             </p>
+
           </div>
 
-          <form>
 
-            <div className="form-group">
-              <label htmlFor="mobile">
+          {/* ================= FORM ================= */}
+
+          <form
+            className="citizen-login-form"
+            onSubmit={handleLogin}
+          >
+
+            {/* MOBILE */}
+
+            <div className="citizen-form-group">
+
+              <label>
                 Mobile Number
               </label>
 
-              <input
-                id="mobile"
-                type="tel"
-                placeholder="Enter your registered mobile number"
-                maxLength="10"
-              />
+              <div className="citizen-input-wrapper">
+
+                <User size={16} />
+
+                <input
+                  type="tel"
+                  placeholder="Enter registered mobile number"
+                  value={mobile}
+                  onChange={(e) =>
+                    setMobile(e.target.value)
+                  }
+                  maxLength={10}
+                  required
+                />
+
+              </div>
+
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">
-                Password
-              </label>
 
-              <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-              />
-              <a href="#" className="forgot-password">
-                Forgot Password?
-              </a>
+            {/* PASSWORD */}
+
+            <div className="citizen-form-group">
+
+              <div className="citizen-label-row">
+
+                <label>
+                  Password
+                </label>
+
+                <button
+                  type="button"
+                  className="forgot-password"
+                >
+                  Forgot password?
+                </button>
+
+              </div>
+
+
+              <div className="citizen-input-wrapper">
+
+                <Lock size={16} />
+
+                <input
+                  type={
+                    showPassword
+                      ? "text"
+                      : "password"
+                  }
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) =>
+                    setPassword(e.target.value)
+                  }
+                  required
+                />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowPassword(!showPassword)
+                  }
+                >
+                  {showPassword ? (
+                    <EyeOff size={16} />
+                  ) : (
+                    <Eye size={16} />
+                  )}
+                </button>
+
+              </div>
+
             </div>
+
+
+            {/* REMEMBER */}
+
+            <label className="remember-me">
+
+              <input type="checkbox" />
+
+              <span>
+                Keep me signed in
+              </span>
+
+            </label>
+
+
+            {/* LOGIN BUTTON */}
 
             <button
               type="submit"
-              className="citizen-login-submit"
-              onClick={(e) => e.preventDefault()}
+              className="citizen-login-button"
             >
-              Login Securely
+
+              Sign In
+
+              <ArrowRight size={17} />
+
             </button>
 
           </form>
 
-          <div className="login-divider">
-            <span>OR</span>
+
+          {/* ================= SECURITY ================= */}
+
+          <div className="citizen-login-security">
+
+            <ShieldCheck size={17} />
+
+            <div>
+
+              <strong>
+                Secure Government Service
+              </strong>
+
+              <span>
+                Your information is protected
+                using secure authentication.
+              </span>
+
+            </div>
+
           </div>
 
-          <button className="otp-login-button">
-            Login with OTP
-          </button>
 
-          <div className="new-user">
-            <span>Don't have an account?</span>
-            <a href="#">Register as Citizen</a>
+          {/* ================= REGISTER ================= */}
+
+          <div className="citizen-register">
+
+            <span>
+              Don't have an account?
+            </span>
+
+            <button type="button">
+              Register as Citizen
+            </button>
+
           </div>
 
-          <div className="back-home">
-            <Link to="/login">
-              ← Back to Login Options
-            </Link>
-          </div>
+        </div>
 
-        </section>
 
-      </div>
-    </main>
+        {/* ================= FOOTNOTE ================= */}
+
+        <div className="citizen-login-footer">
+
+          <span>
+            © 2026 RecordSetu
+          </span>
+
+          <span>
+            Department of Land Resources
+          </span>
+
+          <span>
+            Government Portal
+          </span>
+
+        </div>
+
+      </main>
+
+    </div>
   );
 }
 

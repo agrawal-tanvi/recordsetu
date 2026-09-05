@@ -1,218 +1,310 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  ShieldCheck,
+  LockKeyhole,
+  Eye,
+  EyeOff,
+  ArrowLeft,
+  UserCog,
+  Building2,
+  CheckCircle2,
+} from "lucide-react";
 import "./AdminLogin.css";
 
 function AdminLogin() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
+  const [adminId, setAdminId] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    setError("");
 
-    if (!formData.username || !formData.password) {
-      alert("Please enter username and password.");
+    if (!adminId || !password) {
+      setError("Please enter your Administrator ID and password.");
       return;
     }
 
-    alert("Admin login submitted successfully.");
-
-    // Later this will connect to the backend.
+    // Frontend demo login
+    navigate("/admin-dashboard");
   };
 
   return (
-    <main className="admin-login-page">
+    <div className="admin-login-page">
 
-      <div className="admin-login-container">
+      {/* Back Button */}
+      <button
+        className="admin-back-btn"
+        onClick={() => navigate("/")}
+      >
+        <ArrowLeft size={19} />
+        Back to Home
+      </button>
 
-        {/* Left information section */}
-        <section className="admin-login-info">
+      <div className="admin-login-wrapper">
 
-          <div className="admin-badge">
-            RECORDSETU
+        {/* LEFT INFORMATION PANEL */}
+        <section className="admin-info-panel">
+
+          <div className="admin-brand">
+            <div className="admin-brand-icon">
+              <ShieldCheck size={32} />
+            </div>
+
+            <div>
+              <span>Government of India</span>
+              <h2>RecordSetu</h2>
+              <p>Department of Land Resources</p>
+            </div>
           </div>
 
-          <h1>
-            Department &
-            <br />
-            <span>Administrator Login</span>
-          </h1>
-
-          <p>
-            Secure access to the RecordSetu administrative
-            platform for managing digital land records,
-            services, users and departmental operations.
-          </p>
-
-          <div className="admin-features">
-
-            <div className="admin-feature">
-              <span>✓</span>
-              <div>
-                <strong>Secure Access</strong>
-                <small>
-                  Protected administrative login
-                </small>
-              </div>
+          <div className="admin-info-content">
+            <div className="admin-label">
+              ADMINISTRATIVE ACCESS
             </div>
 
-            <div className="admin-feature">
-              <span>✓</span>
-              <div>
-                <strong>Land Record Management</strong>
-                <small>
-                  Manage and review land record services
-                </small>
-              </div>
-            </div>
+            <h1>
+              Secure Administration
+              <span> for Land Records</span>
+            </h1>
 
-            <div className="admin-feature">
-              <span>✓</span>
-              <div>
-                <strong>Department Dashboard</strong>
-                <small>
-                  Access departmental operations and reports
-                </small>
-              </div>
-            </div>
+            <p className="admin-description">
+              Authorized administrators can manage government
+              operations, monitor land-record activities and oversee
+              citizen services through the RecordSetu administration
+              portal.
+            </p>
 
+            <div className="admin-security-list">
+
+              <div className="admin-security-item">
+                <div className="security-icon">
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <strong>Secure Government Access</strong>
+                  <p>Restricted administrative access</p>
+                </div>
+              </div>
+
+              <div className="admin-security-item">
+                <div className="security-icon">
+                  <Building2 size={20} />
+                </div>
+                <div>
+                  <strong>Department Administration</strong>
+                  <p>Manage departmental operations</p>
+                </div>
+              </div>
+
+              <div className="admin-security-item">
+                <div className="security-icon">
+                  <CheckCircle2 size={20} />
+                </div>
+                <div>
+                  <strong>Authorized Personnel Only</strong>
+                  <p>Access monitored and protected</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div className="admin-info-footer">
+            <span>Digital India</span>
+            <span>•</span>
+            <span>Department of Land Resources</span>
           </div>
 
         </section>
 
 
-        {/* Login card */}
-        <section className="admin-login-card">
+        {/* RIGHT LOGIN CARD */}
+        <section className="admin-login-section">
 
-          <div className="admin-card-header">
+          <div className="admin-login-card">
 
-            <div className="admin-icon">
-              🏛️
+            <div className="admin-login-icon">
+              <UserCog size={31} />
             </div>
 
-            <div>
+            <div className="admin-login-heading">
+              <span>ADMINISTRATOR PORTAL</span>
+
               <h2>Administrator Login</h2>
 
               <p>
-                Sign in to continue to the administrative portal.
+                Sign in to access the RecordSetu administration
+                dashboard.
               </p>
             </div>
 
-          </div>
+            <form onSubmit={handleLogin}>
+
+              {/* ADMIN ID */}
+              <div className="admin-form-group">
+                <label htmlFor="adminId">
+                  Administrator ID
+                </label>
+
+                <div className="admin-input-wrapper">
+                  <UserCog size={19} />
+
+                  <input
+                    id="adminId"
+                    type="text"
+                    placeholder="Enter administrator ID"
+                    value={adminId}
+                    onChange={(e) => setAdminId(e.target.value)}
+                    autoComplete="username"
+                  />
+                </div>
+              </div>
 
 
-          <form onSubmit={handleSubmit}>
+              {/* PASSWORD */}
+              <div className="admin-form-group">
+                <div className="admin-password-label">
+                  <label htmlFor="adminPassword">
+                    Password
+                  </label>
 
-            <div className="admin-form-group">
+                  <button
+                    type="button"
+                    className="admin-forgot-btn"
+                    onClick={() =>
+                      setError(
+                        "Password recovery will be available in the next version."
+                      )
+                    }
+                  >
+                    Forgot password?
+                  </button>
+                </div>
 
-              <label htmlFor="username">
-                Username / Department ID
-              </label>
+                <div className="admin-input-wrapper">
+                  <LockKeyhole size={19} />
 
-              <input
-                id="username"
-                name="username"
-                type="text"
-                value={formData.username}
-                onChange={handleChange}
-                placeholder="Enter your username or department ID"
-                autoComplete="username"
-              />
+                  <input
+                    id="adminPassword"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password"
+                  />
 
-            </div>
+                  <button
+                    type="button"
+                    className="admin-password-toggle"
+                    onClick={() =>
+                      setShowPassword(!showPassword)
+                    }
+                    aria-label={
+                      showPassword
+                        ? "Hide password"
+                        : "Show password"
+                    }
+                  >
+                    {showPassword ? (
+                      <EyeOff size={19} />
+                    ) : (
+                      <Eye size={19} />
+                    )}
+                  </button>
+                </div>
+              </div>
 
 
-            <div className="admin-form-group">
+              {/* REMEMBER ME */}
+              <div className="admin-options">
 
-              <label htmlFor="password">
-                Password
-              </label>
+                <label className="admin-remember">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) =>
+                      setRememberMe(e.target.checked)
+                    }
+                  />
 
-              <div className="admin-password-wrapper">
+                  <span>Keep me signed in</span>
+                </label>
 
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  autoComplete="current-password"
+              </div>
+
+
+              {/* ERROR */}
+              {error && (
+                <div className="admin-error">
+                  {error}
+                </div>
+              )}
+
+
+              {/* LOGIN */}
+              <button
+                type="submit"
+                className="admin-login-btn"
+              >
+                <span>Sign In</span>
+                <ArrowLeft
+                  size={20}
+                  className="admin-login-arrow"
                 />
+              </button>
 
-                <button
-                  type="button"
-                  className="show-password-button"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
+            </form>
 
+
+            {/* SECURITY NOTICE */}
+            <div className="admin-secure-notice">
+
+              <div className="admin-secure-icon">
+                <ShieldCheck size={21} />
+              </div>
+
+              <div>
+                <strong>Secure Government Service</strong>
+
+                <p>
+                  This portal is restricted to authorized
+                  government personnel. Your information is
+                  protected using secure authentication.
+                </p>
               </div>
 
             </div>
 
 
-            <div className="admin-login-options">
-
-              <label className="remember-me">
-                <input type="checkbox" />
-                <span>Remember me</span>
-              </label>
+            {/* BACK TO OFFICIAL LOGIN */}
+            <div className="admin-other-login">
+              <span>Are you a government official?</span>
 
               <button
                 type="button"
-                className="forgot-password"
-                onClick={() =>
-                  alert("Please contact your department administrator.")
-                }
+                onClick={() => navigate("/official-login")}
               >
-                Forgot Password?
+                Official Login
               </button>
-
             </div>
 
-
-            <button
-              type="submit"
-              className="admin-submit-button"
-            >
-              Login to Administration
-            </button>
-
-          </form>
-
-
-          <div className="admin-security-note">
-            🔒 Your login credentials are protected.
           </div>
 
-
-          <div className="admin-back-link">
-
-            <Link to="/login">
-              ← Back to Login Options
-            </Link>
-
-          </div>
+          <footer className="admin-login-footer">
+            © 2026 RecordSetu • Department of Land Resources •
+            Government of India
+          </footer>
 
         </section>
 
       </div>
-
-    </main>
+    </div>
   );
 }
 

@@ -29,3 +29,4 @@ __pycache__/
 uploads/
 *.pyc
 .env
+*.db

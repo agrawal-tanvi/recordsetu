@@ -76,11 +76,11 @@ def validate_extraction(result: ExtractionResult) -> ValidationResult:
 
     review_required = bool(errors or warnings)
 
-   return ValidationResult(
-    document_id=result.document_id,
-    valid=not errors,
-    review_required=review_required,
-    errors=errors,
-    warnings=warnings,
-    low_confidence_fields=low_confidence_fields,
-)
+    return ValidationResult(
+        document_id=result.document_id,
+        valid=not errors,
+        review_required=review_required,
+        errors=errors,
+        warnings=warnings,
+        low_confidence_fields=low_confidence_fields,
+    )

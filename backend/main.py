@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes.documents import router as documents_router
-
+from routes.processing import router as processing_router
 
 app = FastAPI(
     title="RecordSetu API",
@@ -30,3 +30,4 @@ def health_check():
 
 
 app.include_router(documents_router)
+app.include_router(processing_router)

@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 # --------------------------------------------------
-# App configuration
+# App Configuration
 # --------------------------------------------------
 
 app = FastAPI(
@@ -17,7 +17,7 @@ app = FastAPI(
 
 
 # --------------------------------------------------
-# CORS - allows React frontend to communicate
+# CORS
 # --------------------------------------------------
 
 app.add_middleware(
@@ -30,13 +30,15 @@ app.add_middleware(
 
 
 # --------------------------------------------------
-# Storage
+# File Storage Configuration
 # --------------------------------------------------
 
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".pdf", ".jpg", ".jpeg", ".png"}
+
+MAX_FILE_SIZE = 50 * 1024 * 1024  # 50 MB
 
 
 # --------------------------------------------------
@@ -61,8 +63,8 @@ async def upload_document(file: UploadFile = File(...)):
     """
     Upload a land record document.
 
-    The file is temporarily stored locally.
-    Later this will connect to OCR/AI processing.
+    The uploaded document is temporarily stored locally.
+    Later, it will be sent to the AI/OCR pipeline.
     """
 
     if not file.filename:
@@ -86,11 +88,10 @@ async def upload_document(file: UploadFile = File(...)):
 
     contents = await file.read()
 
-    # 10 MB limit for prototype
-    if len(contents) > 10 * 1024 * 1024:
+    if len(contents) > MAX_FILE_SIZE:
         raise HTTPException(
             status_code=413,
-            detail="File too large. Maximum size is 10 MB.",
+            detail="File too large. Maximum size is 50 MB.",
         )
 
     file_path.write_bytes(contents)

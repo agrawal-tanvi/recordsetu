@@ -7,7 +7,8 @@ from models.document import Document
 from models.land_record import LandRecord
 from models.validation import ValidationResult
 from models.audit import AuditLog
-
+from schemas.document import ExtractionResult, ExtractedFields, FieldValue
+from services.validation_service import validate_extraction
 
 router = APIRouter(
     prefix="/api",
@@ -256,11 +257,77 @@ def review_document(
             detail="No changes were provided for review.",
         )
 
-    # ---------------------------------------------
-    # Mark document as verified
+       # ---------------------------------------------
+    # Re-validate after human correction
     # ---------------------------------------------
 
-    document.status = "VERIFIED"
+    def make_field(value, confidence):
+        return FieldValue(
+            value=str(value) if value is not None else None,
+            confidence=confidence,
+        )
+
+    corrected_extraction = ExtractionResult(
+        document_id=document_id,
+        fields=ExtractedFields(
+            khasra_no=make_field(
+                land_record.khasra_no,
+                1.0 if "khasra_no" in [c["field_name"] for c in changes]
+                else land_record.khasra_confidence,
+            ),
+            owner_name=make_field(
+                land_record.owner_name,
+                1.0 if "owner_name" in [c["field_name"] for c in changes]
+                else land_record.owner_confidence,
+            ),
+            village=make_field(
+                land_record.village,
+                1.0 if "village" in [c["field_name"] for c in changes]
+                else land_record.village_confidence,
+            ),
+            district=make_field(
+                land_record.district,
+                1.0 if "district" in [c["field_name"] for c in changes]
+                else land_record.district_confidence,
+            ),
+            area=make_field(
+                land_record.area,
+                1.0 if "area" in [c["field_name"] for c in changes]
+                else land_record.area_confidence,
+            ),
+            area_unit=make_field(
+                land_record.area_unit,
+                1.0 if "area_unit" in [c["field_name"] for c in changes]
+                else land_record.area_unit_confidence,
+            ),
+        ),
+    )
+
+    validation = validate_extraction(corrected_extraction)
+
+    # ---------------------------------------------
+    # Save second validation result
+    # ---------------------------------------------
+
+    validation_record = ValidationResult(
+        document_id=document_id,
+        valid=validation.valid,
+        review_required=validation.review_required,
+        errors=validation.errors,
+        warnings=validation.warnings,
+        low_confidence_fields=validation.low_confidence_fields,
+    )
+
+    db.add(validation_record)
+
+    # ---------------------------------------------
+    # Determine final status
+    # ---------------------------------------------
+
+    if validation.review_required:
+        document.status = "REVIEW_REQUIRED"
+    else:
+        document.status = "VERIFIED"
 
     # ---------------------------------------------
     # Save everything
@@ -271,13 +338,22 @@ def review_document(
     return {
         "success": True,
         "document_id": document_id,
-        "status": "VERIFIED",
+        "status": document.status,
         "reviewer": update.reviewer,
         "changes": changes,
-        "message": "Human review completed successfully.",
+        "validation": {
+            "valid": validation.valid,
+            "review_required": validation.review_required,
+            "errors": validation.errors,
+            "warnings": validation.warnings,
+            "low_confidence_fields": validation.low_confidence_fields,
+        },
+        "message": (
+            "Human review completed and record verified."
+            if document.status == "VERIFIED"
+            else "Human correction saved, but the record still requires review."
+        ),
     }
-
-
 # ---------------------------------------------------------
 # AUDIT LOG
 # ---------------------------------------------------------

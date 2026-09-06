@@ -1,0 +1,207 @@
+/* ==========================================================================
+   UPLOAD DOCUMENT & OCR DESK PAGE STYLES
+   ========================================================================== */
+.upload-doc-page {
+  background: #F4F6F9;
+  min-height: calc(100vh - 280px);
+  padding-bottom: 3.5rem;
+}
+
+.badge-ai-model {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1E40AF;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+.upload-stage-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.upload-panel-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.card-top-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.title-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #EEF5FB;
+  color: #163A63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-heading {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.card-subheading {
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.interactive-drop-zone {
+  border: 2px dashed #94A3B8;
+  border-radius: 8px;
+  background: #F8FAFC;
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.interactive-drop-zone:hover {
+  border-color: #163A63;
+  background: #EFF6FF;
+}
+
+.dropzone-icon {
+  margin-bottom: 0.75rem;
+}
+
+.dropzone-sub {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin-top: 0.35rem;
+}
+
+.selected-file-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+
+.file-info-col {
+  flex: 1;
+  font-size: 0.84rem;
+}
+
+.file-info-col strong {
+  display: block;
+  color: #1E293B;
+}
+
+.file-info-col span {
+  font-size: 0.76rem;
+  color: #64748B;
+}
+
+.ocr-progress-box {
+  margin-top: 1.5rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.ocr-progress-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #163A63;
+  margin-bottom: 0.85rem;
+}
+
+.ocr-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ocr-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.65rem;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.ocr-step-item.done {
+  border-color: #A7F3D0;
+  background: #F0FDF4;
+  color: #065F46;
+  font-weight: 600;
+}
+
+.ocr-step-item.active {
+  border-color: #93C5FD;
+  background: #EFF6FF;
+  color: #1E40AF;
+  font-weight: 600;
+}
+
+.step-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-text {
+  flex: 1;
+}
+
+.step-tag-verified {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.preview-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.preview-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #163A63;
+}
+
+@media (max-width: 992px) {
+  .upload-stage-grid {
+    grid-template-columns: 1fr;
+  }
+}

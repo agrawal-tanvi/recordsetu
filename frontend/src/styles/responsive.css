@@ -1,0 +1,114 @@
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .form-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar-inner {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 0;
+    gap: 0.4rem;
+  }
+  .top-bar-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .quick-search-box {
+    flex: 1;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 0;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-top-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  .hero-title {
+    font-size: 2.1rem;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-4, .form-grid-3, .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .dashboard-main {
+    padding: 1.25rem;
+  }
+  .doc-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .document-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta-group {
+    flex-direction: column;
+  }
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .auth-card {
+    padding: 1.5rem;
+  }
+}

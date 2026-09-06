@@ -1,0 +1,230 @@
+/* ==========================================================================
+   RECORDSETU - CITIZEN SERVICES DIRECTORY STYLESHEET
+   ========================================================================== */
+
+/* Page container & centering */
+.services-page {
+  background-color: #F4F6F9;
+  min-height: calc(100vh - 280px);
+  padding-bottom: 3.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1E293B;
+}
+
+.services-page .container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Page Header Bar */
+.services-page .page-header-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #CBD5E1;
+  padding: 1.5rem 0;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.services-page .header-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.services-page .breadcrumbs {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-bottom: 0.35rem;
+}
+
+.services-page .breadcrumbs span {
+  color: #64748B;
+}
+
+.services-page .breadcrumbs strong {
+  color: #163A63;
+  font-weight: 700;
+}
+
+.services-page .page-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #163A63;
+  line-height: 1.25;
+  margin: 0 0 0.35rem 0;
+}
+
+.services-page .page-subtitle {
+  font-size: 0.88rem;
+  color: #64748B;
+  margin: 0;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+/* Services Directory Grid (3 Columns) */
+.services-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Service Card */
+.service-directory-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-top: 3px solid #163A63;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.service-directory-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(22, 58, 99, 0.08);
+  border-color: #1E4E8C;
+  border-top-color: #1E4E8C;
+}
+
+/* Top Section of Card: Icon & SLA */
+.service-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.15rem;
+}
+
+.service-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #EEF5FB;
+  color: #163A63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #DDEBF7;
+  transition: all 0.2s ease;
+}
+
+.service-directory-card:hover .service-icon-box {
+  background: #163A63;
+  color: #FFFFFF;
+}
+
+.sla-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #D97706;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Card Content */
+.service-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #163A63;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.35;
+}
+
+.service-desc {
+  font-size: 0.86rem;
+  color: #64748B;
+  line-height: 1.55;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+/* Card Footer: Fee & Action Button */
+.service-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #F1F5F9;
+  margin-top: auto;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fee-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.services-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.services-page .btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+.services-page .btn-outline {
+  background-color: #FFFFFF;
+  color: #163A63;
+  border: 1px solid #CBD5E1;
+}
+
+.services-page .btn-outline:hover {
+  background-color: #EEF5FB;
+  border-color: #1E4E8C;
+  color: #1E4E8C;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .services-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .services-directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-card-footer .btn {
+    width: 100%;
+  }
+}

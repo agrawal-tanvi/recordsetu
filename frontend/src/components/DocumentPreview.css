@@ -1,0 +1,225 @@
+/* ==========================================================================
+   OFFICIAL DOCUMENT PREVIEW (Khatauni / RoR 7/12 Sheet)
+   ========================================================================== */
+.official-cert-container {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.cert-action-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: #F8FAFC;
+  border-bottom: 1px solid #CBD5E1;
+}
+
+.cert-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.cert-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.official-cert-paper {
+  position: relative;
+  background: #FFFDF8;
+  padding: 2rem 2.25rem;
+  border: 1px solid #E2E8F0;
+  margin: 1.25rem;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+}
+
+.cert-watermark-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: rgba(22, 58, 99, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cert-header-block {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #163A63;
+  margin-bottom: 1rem;
+}
+
+.cert-header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.cert-header-text h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.cert-header-text h4 {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #163A63;
+  margin: 2px 0;
+}
+
+.cert-title-badge {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #163A63;
+  margin: 4px 0;
+}
+
+.cert-subtitle-law {
+  font-size: 0.68rem;
+  color: #64748B;
+}
+
+.cert-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-scan-label {
+  font-size: 0.65rem;
+  color: #64748B;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.cert-meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: #F1F5F9;
+  padding: 0.65rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #E2E8F0;
+}
+
+.meta-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-lbl {
+  font-size: 0.68rem;
+  color: #64748B;
+  text-transform: uppercase;
+}
+
+.meta-val {
+  font-size: 0.82rem;
+  color: #1E293B;
+  font-family: monospace;
+}
+
+.highlight-ulpin {
+  color: #163A63;
+  font-weight: 800;
+}
+
+.cert-section-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #163A63;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.cert-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.cert-table th, .cert-table td {
+  border: 1px solid #CBD5E1;
+  padding: 0.55rem 0.75rem;
+}
+
+.cert-table th {
+  background: #F8FAFC;
+  color: #334155;
+  font-weight: 700;
+}
+
+.cert-table td {
+  background: #FFFFFF;
+}
+
+.cert-stamp-box {
+  margin: 1.5rem 0 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.official-seal-impression {
+  border: 2px dashed #DC2626;
+  color: #DC2626;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  text-align: center;
+  transform: rotate(-3deg);
+  background: rgba(220, 38, 38, 0.03);
+}
+
+.seal-authority {
+  font-size: 0.76rem;
+  font-weight: 800;
+  display: block;
+}
+
+.seal-date {
+  font-size: 0.65rem;
+  display: block;
+}
+
+.seal-status {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-top: 2px;
+}
+
+.cert-security-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #CBD5E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hash-val {
+  font-family: monospace;
+  color: #334155;
+}

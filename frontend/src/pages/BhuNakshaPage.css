@@ -1,0 +1,558 @@
+/* ==========================================================================
+   RECORDSETU - BHU-NAKSHA CADASTRAL GIS PORTAL STYLESHEET
+   ========================================================================== */
+
+/* Page container & centering */
+.bhu-naksha-page {
+  background-color: #F4F6F9;
+  min-height: calc(100vh - 280px);
+  padding-bottom: 3.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1E293B;
+}
+
+.bhu-naksha-page .container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Page Header Bar */
+.bhu-naksha-page .page-header-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #CBD5E1;
+  padding: 1.5rem 0;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.bhu-naksha-page .header-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.bhu-naksha-page .breadcrumbs {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-bottom: 0.35rem;
+}
+
+.bhu-naksha-page .breadcrumbs span {
+  color: #64748B;
+}
+
+.bhu-naksha-page .breadcrumbs strong {
+  color: #163A63;
+  font-weight: 700;
+}
+
+.bhu-naksha-page .page-sub-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #1E4E8C;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.bhu-naksha-page .page-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #163A63;
+  line-height: 1.25;
+  margin: 0 0 0.4rem 0;
+}
+
+.bhu-naksha-page .page-subtitle {
+  font-size: 0.88rem;
+  color: #64748B;
+  max-width: 860px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bhu-naksha-page .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Button utility styles */
+.bhu-naksha-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.5rem 1.15rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.bhu-naksha-page .btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+.bhu-naksha-page .btn-primary {
+  background-color: #163A63;
+  color: #FFFFFF;
+  border: 1px solid #163A63;
+}
+
+.bhu-naksha-page .btn-primary:hover {
+  background-color: #1E4E8C;
+  border-color: #1E4E8C;
+  color: #FFFFFF;
+}
+
+.bhu-naksha-page .btn-outline {
+  background-color: #FFFFFF;
+  color: #163A63;
+  border: 1px solid #CBD5E1;
+}
+
+.bhu-naksha-page .btn-outline:hover {
+  background-color: #EEF5FB;
+  border-color: #1E4E8C;
+  color: #1E4E8C;
+}
+
+/* Top Control Toolbar */
+.bhu-naksha-toolbar-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.layer-switcher-pills {
+  display: flex;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.gis-layer-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.gis-layer-btn:hover {
+  color: #163A63;
+}
+
+.gis-layer-btn.active {
+  background: #163A63;
+  color: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.active-mauza-info-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #334155;
+  background: #F8FAFC;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+}
+
+.active-mauza-info-pill strong {
+  color: #163A63;
+}
+
+.geo-wgs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+/* 2-Column Split: Map View + Parcel Inspector */
+.bhu-naksha-split-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Left Column: Interactive Cadastral Map Card */
+.bhu-naksha-map-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.map-canvas-container {
+  position: relative;
+  width: 100%;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Floating Zoom Controls */
+.map-floating-zoom-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.map-ctrl-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  color: #1E293B;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.map-ctrl-btn:hover {
+  background: #EEF5FB;
+  color: #1E4E8C;
+  border-color: #CBD5E1;
+}
+
+/* Floating North Compass */
+.map-floating-compass {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.compass-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.compass-n {
+  font-size: 10px;
+  font-weight: 800;
+  color: #DC2626;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.compass-arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid #DC2626;
+}
+
+.compass-arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 8px solid #64748B;
+}
+
+/* Cadastral SVG Viewport */
+.map-svg-viewport {
+  width: 100%;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #F8FAFC;
+  position: relative;
+}
+
+.cadastral-svg-graphic {
+  width: 100%;
+  height: 100%;
+  max-height: 480px;
+  display: block;
+  user-select: none;
+}
+
+/* Bottom Legend Strip */
+.map-bottom-legend-bar {
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.legend-chip-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.chip-symbol {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.chip-border-dash {
+  background: #F8FAFC;
+  border: 1.5px dashed #2D6A4F;
+}
+
+.chip-selected-gold {
+  background: #F6DE95;
+  border: 1.5px solid #D97706;
+}
+
+.chip-canal-blue {
+  background: #3B82F6;
+  border: 1px solid #2563EB;
+}
+
+.chip-road-grey {
+  background: #CBD5E1;
+  border: 1px dashed #94A3B8;
+}
+
+/* Right Column: Parcel Inspector Card */
+.bhu-naksha-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bhu-naksha-inspector-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+.inspector-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E2E8F0;
+  margin-bottom: 1.25rem;
+}
+
+.inspector-sub-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748B;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.inspector-plot-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #163A63;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.inspector-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.inspector-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.inspector-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.inspector-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detail-lbl {
+  font-size: 0.78rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.detail-val {
+  font-size: 0.92rem;
+  color: #1E293B;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.mono-ulpin {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1E4E8C;
+  background: #EEF5FB;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+  border: 1px solid #DDEBF7;
+}
+
+.text-navy {
+  color: #163A63;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.text-success {
+  color: #059669;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.inspector-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-full-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+  .bhu-naksha-split-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .map-svg-viewport {
+    height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bhu-naksha-toolbar-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .layer-switcher-pills {
+    justify-content: center;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .map-bottom-legend-bar {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,959 @@
+/* National Stats Ribbon */
+.national-stats-container {
+  padding: 1rem 1.5rem 0.5rem;
+}
+
+.stats-ticker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1.2fr) 2fr;
+  gap: 0.75rem;
+}
+
+.stat-ticker-box {
+  background: #FFFFFF;
+  border: 1px solid #D9E2EC;
+  border-radius: 6px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.stat-ticker-icon {
+  background: #F8FAFC;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticker-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #163A63;
+  line-height: 1.1;
+}
+
+.ticker-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-top: 2px;
+}
+
+.ticker-sub {
+  font-size: 0.65rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.ticker-prosperity-banner {
+  background: linear-gradient(135deg, #2E7D5B 0%, #15803D 100%);
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.banner-hi {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.banner-en {
+  font-size: 0.72rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* Hero Section: 3-Column Portal */
+.hero-portal-section {
+  background: linear-gradient(180deg, #EDF4F9 0%, #E2EDF5 100%);
+  padding: 1.25rem 0 2rem;
+  border-bottom: 1px solid #CBD5E1;
+}
+
+.hero-three-column-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1.1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* Column 1: Search Form Panel */
+.hero-form-panel {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title-block .title-hi {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #163A63;
+  line-height: 1.25;
+}
+
+.panel-title-block .title-en {
+  font-size: 0.8rem;
+  color: #64748B;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-bottom: 1rem;
+}
+
+.form-cascade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.cascade-item label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 3px;
+}
+
+.cascade-item select {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  background: #F8FAFC;
+  font-size: 0.8rem;
+  color: #163A63;
+  font-weight: 500;
+}
+
+.search-by-cluster {
+  margin-top: 1rem;
+}
+
+.search-by-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #163A63;
+  margin-bottom: 6px;
+}
+
+.radio-options-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.radio-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+
+.radio-pill input {
+  margin-top: 2px;
+}
+
+.btn-hero-search {
+  width: 100%;
+  margin-top: 1.25rem;
+  background: #2E7D5B;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(46,125,91,0.25);
+  transition: background 0.15s ease;
+}
+
+.btn-hero-search:hover {
+  background: #236348;
+}
+
+/* Column 2: Live Cadastral Map Panel */
+.hero-map-panel {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.map-toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.map-tab-cluster {
+  display: flex;
+  gap: 4px;
+}
+
+.map-tab-cluster button {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.map-tab-cluster button.active {
+  background: #245A94;
+  color: #FFFFFF;
+  border-color: #245A94;
+}
+
+.btn-full-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: #245A94;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.map-canvas-container {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  background: #15261C;
+}
+
+.map-floating-controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.map-floating-controls button {
+  width: 26px;
+  height: 26px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.map-bottom-legend {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.92);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: flex;
+  gap: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.legend-chip {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.dot-village { background: #3B82F6; }
+.dot-parcel { background: #EAB308; }
+.dot-road { background: #94A3B8; }
+.dot-water { background: #0284C7; }
+
+/* Column 3: Roles Panel */
+.hero-roles-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.roles-heading-box {
+  background: #163A63;
+  color: #FFFFFF;
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.roles-hi {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.roles-en {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.role-entry-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.role-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.role-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.green-circle { background: #EBF8F2; color: #2E7D5B; }
+.navy-circle { background: #EEF5FB; color: #163A63; }
+
+.role-title-hi {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.role-title-en {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.role-summary-text {
+  font-size: 0.75rem;
+  color: #475569;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.role-feature-bullets {
+  list-style: none;
+  margin: 0 0 0.75rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.72rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+.role-feature-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.role-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.btn-role-primary {
+  padding: 0.55rem;
+  text-align: center;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.green-btn { background: #2E7D5B; }
+.green-btn:hover { background: #246348; }
+
+.navy-btn { background: #163A63; }
+.navy-btn:hover { background: #0E243D; }
+
+.btn-role-outline {
+  padding: 0.4rem;
+  text-align: center;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  color: #163A63;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.role-security-tag {
+  background: #FFFFFF;
+  border: 1px dashed #CBD5E1;
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  color: #2E7D5B;
+  font-weight: 700;
+}
+
+/* Farmer Mission Quote Banner */
+.farmer-mission-banner {
+  background: linear-gradient(90deg, #FDF8E2 0%, #FEFDF5 50%, #F5FBF7 100%);
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 0.85rem 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.farmer-avatar-holder {
+  flex-shrink: 0;
+}
+
+.farmer-text-holder .quote-hi {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.farmer-text-holder .quote-en {
+  font-size: 0.85rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.btn-farmer-mission {
+  background: #163A63;
+  color: #FFFFFF;
+  padding: 0.6rem 1.1rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Key Services 3-Card Grid */
+.services-section-heading h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #163A63;
+  margin-bottom: 1rem;
+}
+
+.services-section-heading h2 span {
+  font-weight: 600;
+  color: #64748B;
+}
+
+.key-services-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.key-service-card {
+  background: #FFFFFF;
+  border: 1px solid #D9E2EC;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+.card-orange-accent { border-top: 4px solid #D97706; }
+.card-teal-accent { border-top: 4px solid #0D9488; }
+.card-purple-accent { border-top: 4px solid #7C3AED; }
+
+.service-card-body {
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.service-badge-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.orange-num { background: #D97706; }
+.teal-num { background: #0D9488; }
+.purple-num { background: #7C3AED; }
+
+.service-meta {
+  flex: 1;
+}
+
+.svc-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #163A63;
+  margin-bottom: 0.35rem;
+}
+
+.svc-desc {
+  font-size: 0.82rem;
+  color: #64748B;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.btn-service-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #163A63;
+  color: #FFFFFF;
+  padding: 0.45rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.service-doc-thumbnail {
+  width: 85px;
+  height: 110px;
+  flex-shrink: 0;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #F8FAFC;
+}
+
+.service-doc-thumbnail.ai-thumb {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+/* 4 Live Feature Panels Grid */
+.live-panels-wrapper {
+  margin: 2.5rem auto 4rem;
+}
+
+.four-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.live-preview-panel {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.panel-header-bar {
+  padding: 0.6rem 1rem;
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navy-bar { background: #163A63; }
+.dark-teal-bar { background: #134E4A; }
+.blue-bar { background: #1D4ED8; }
+.teal-bar { background: #0F766E; }
+
+.view-all-link {
+  color: #F8FAFC;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+.panel-inner-content {
+  padding: 1.25rem;
+}
+
+.citizen-welcome-row, .official-welcome-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.welcome-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EBF8F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.official-avatar {
+  background: #EEF5FB;
+}
+
+.citizen-action-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.action-tile {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #163A63;
+  line-height: 1.2;
+}
+
+.action-tile:hover {
+  background: #EEF5FB;
+  border-color: #245A94;
+}
+
+.official-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stat-pill-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+.stat-pill-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.stat-pill-lbl {
+  font-size: 0.68rem;
+  color: #64748B;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+.official-pipeline-steps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.pipe-step {
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: #64748B;
+  white-space: nowrap;
+}
+
+.pipe-step.done {
+  background: #EBF8F2;
+  color: #2E7D5B;
+  font-weight: 700;
+}
+
+.pipe-step.active {
+  background: #245A94;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* AI Verification Panel specifics */
+.ai-scrutiny-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+}
+
+.ai-doc-bounding-box-view {
+  background: #FEFDF5;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sample-urdu-doc {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg, #F8FAFC, #F8FAFC 8px, #FFFFFF 8px, #FFFFFF 16px);
+  position: relative;
+}
+
+.ocr-bbox {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 2px;
+}
+
+.red-box { border-color: #EF4444; background: rgba(239,68,68,0.15); }
+.blue-box { border-color: #3B82F6; background: rgba(59,130,246,0.15); }
+.green-box { border-color: #10B981; background: rgba(16,185,129,0.15); }
+
+.bbox-tag {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.red-box .bbox-tag { background: #EF4444; }
+.blue-box .bbox-tag { background: #3B82F6; }
+.green-box .bbox-tag { background: #10B981; }
+
+.mini-ai-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+}
+
+.mini-ai-table td {
+  padding: 3px 4px;
+  border-bottom: 1px solid #F1F5F9;
+  color: #1E293B;
+}
+
+.conf-chip {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.conf-high { background: #EBF8F2; color: #2E7D5B; }
+.conf-mid { background: #FEF3C7; color: #D97706; }
+
+.ai-action-buttons-strip {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.btn-ocr-approve { background: #2E7D5B; color: #FFFFFF; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 3px; }
+.btn-ocr-review { background: #D97706; color: #FFFFFF; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 3px; }
+.btn-ocr-reject { background: #DC2626; color: #FFFFFF; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 3px; }
+
+/* Bhu-Naksha Panel specifics */
+.naksha-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+}
+
+.naksha-canvas-box {
+  height: 180px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #CBD5E1;
+}
+
+.mini-parcel-info {
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #334155;
+}
+
+.mini-parcel-info span {
+  color: #64748B;
+}
+
+.naksha-buttons-strip {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.btn-naksha-action {
+  background: #163A63;
+  color: #FFFFFF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn-naksha-outline {
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #163A63;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Official Footer */
+.gov-official-footer {
+  background: #0B2239;
+  color: #CBD5E1;
+  margin-top: auto;
+}
+
+.footer-content-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-left-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-title-hi {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.footer-sub {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.footer-center-meta {
+  text-align: center;
+}
+
+.meta-links {
+  display: flex;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+
+.meta-links a {
+  color: #CBD5E1;
+  text-decoration: none;
+}
+
+.version-info {
+  font-size: 0.68rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+.footer-right-motto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.motto-text {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #FBBF24;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero-three-column-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-ticker-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ticker-prosperity-banner {
+    grid-column: span 2;
+  }
+  .key-services-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .four-panel-grid {
+    grid-template-columns: 1fr;
+  }
+}

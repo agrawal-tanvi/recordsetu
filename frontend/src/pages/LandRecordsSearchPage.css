@@ -1,0 +1,339 @@
+/* ==========================================================================
+   LAND RECORDS SEARCH PAGE STYLES
+   ========================================================================== */
+.search-records-page {
+  background: #F4F6F9;
+  min-height: calc(100vh - 280px);
+  padding-bottom: 3.5rem;
+}
+
+.page-header-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #CBD5E1;
+  padding: 1.25rem 0;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.header-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.breadcrumbs {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-bottom: 0.35rem;
+}
+
+.breadcrumbs strong {
+  color: #163A63;
+}
+
+.page-sub-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #245A94;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #163A63;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.page-subtitle {
+  font-size: 0.88rem;
+  color: #64748B;
+  max-width: 860px;
+}
+
+.badge-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+/* Search Form Card */
+.search-form-container-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.search-tabs-row {
+  display: flex;
+  background: #F1F5F9;
+  border-bottom: 1px solid #CBD5E1;
+}
+
+.search-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.search-tab-btn:hover {
+  background: #E2E8F0;
+  color: #163A63;
+}
+
+.search-tab-btn.active {
+  background: #FFFFFF;
+  color: #163A63;
+  border-bottom-color: #FF9933;
+}
+
+.search-form-body {
+  padding: 1.75rem;
+}
+
+.search-fields-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.search-fields-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-select, .form-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #1E293B;
+  background-color: #FFFFFF;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-select:focus, .form-input:focus {
+  border-color: #163A63;
+  box-shadow: 0 0 0 3px rgba(22, 58, 99, 0.1);
+}
+
+.form-select:disabled, .form-input:disabled {
+  background-color: #F8FAFC;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+.search-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #E2E8F0;
+}
+
+/* Results Section */
+.records-results-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.results-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  background: #F8FAFC;
+  border-bottom: 1px solid #CBD5E1;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.results-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.results-count-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.results-ledger-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.record-total-hint {
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.gov-records-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.gov-records-table thead tr {
+  background: #F1F5F9;
+  border-bottom: 2px solid #CBD5E1;
+}
+
+.gov-records-table th {
+  padding: 0.85rem 1.15rem;
+  font-weight: 700;
+  color: #163A63;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gov-records-table td {
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid #E2E8F0;
+  vertical-align: middle;
+}
+
+.gov-records-table tbody tr:hover {
+  background: #F8FAFC;
+}
+
+.record-id-mono {
+  font-family: monospace;
+  font-weight: 800;
+  color: #163A63;
+}
+
+.record-owner-name {
+  color: #1E293B;
+  display: block;
+}
+
+.record-relation-sub {
+  font-size: 0.76rem;
+  color: #64748B;
+  display: block;
+}
+
+.khasra-number-tag {
+  color: #0369A1;
+  font-weight: 800;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.status-verified {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
+.btn-table-action {
+  display: inline-block;
+  background: #163A63;
+  color: #FFFFFF !important;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: background 0.15s ease;
+}
+
+.btn-table-action:hover {
+  background: #0F2844;
+}
+
+.empty-table-cell {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: #64748B;
+}
+
+@media (max-width: 992px) {
+  .search-fields-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-fields-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .search-fields-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .search-tabs-row {
+    flex-direction: column;
+  }
+}

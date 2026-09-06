@@ -1,113 +1,758 @@
-import React, { useState } from 'react'
-import { Plus, Search, Eye, CheckCircle, Clock, XCircle, FileText } from 'lucide-react'
-import './Applications.css'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
+import '../../pages/NewApplicationPage.css';
+import { statesData } from '../../data/states';
+import { 
+  FileText, 
+  Upload, 
+  CheckCircle2, 
+  AlertCircle, 
+  User, 
+  MapPin, 
+  Briefcase, 
+  FileCheck, 
+  Trash2, 
+  Printer, 
+  ArrowRight 
+} from 'lucide-react';
 
-function Applications() {
-  const [applications] = useState([
-    { id: 'APP-2024-001', type: 'Mutation', applicant: 'Rajesh Kumar', village: 'Dharmpur', date: '2024-01-15', status: 'Approved' },
-    { id: 'APP-2024-002', type: 'New Registration', applicant: 'Priya Sharma', village: 'Govindpur', date: '2024-01-20', status: 'Pending' },
-    { id: 'APP-2024-003', type: 'Correction', applicant: 'Amit Singh', village: 'Rampur', date: '2024-01-25', status: 'In Review' },
-    { id: 'APP-2024-004', type: 'Mutation', applicant: 'Sunita Devi', village: 'Krishnapur', date: '2024-02-01', status: 'Rejected' },
-    { id: 'APP-2024-005', type: 'New Registration', applicant: 'Vikram Patel', village: 'Shivpur', date: '2024-02-05', status: 'Pending' },
-  ])
+export const ApplicationForm = () => {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
 
-  const [filter, setFilter] = useState('all')
+  // Selected Location Cascading State
+  const [selectedState, setSelectedState] = useState('Uttar Pradesh');
+  const [selectedDistrict, setSelectedDistrict] = useState('Sitapur');
+  const [selectedTehsil, setSelectedTehsil] = useState('Rampur');
+  const [selectedVillage, setSelectedVillage] = useState('Khairpur');
 
-  const filteredApps = applications.filter(app => 
-    filter === 'all' || app.status.toLowerCase() === filter
-  )
+  // Form Field State
+  const [formData, setFormData] = useState({
+    fullName: '',
+    fatherHusbandName: '',
+    aadhaarNumber: '',
+    mobileNumber: '',
+    emailAddress: '',
+    residentialAddress: '',
+    serviceType: 'Mutation / Dakhil-Kharij (नामांतरण)',
+    khasraNumber: '',
+    khataNumber: '',
+    areaSize: '',
+    areaUnit: 'Hectares',
+    landClassification: 'Agricultural (कृषि भूमि)',
+    purposeRemarks: '',
+    declarationAccepted: false
+  });
 
-  const getStatusIcon = (status) => {
-    switch(status.toLowerCase()) {
-      case 'approved': return <CheckCircle size={16} className="status-icon approved" />
-      case 'pending': return <Clock size={16} className="status-icon pending" />
-      case 'in review': return <Clock size={16} className="status-icon review" />
-      case 'rejected': return <XCircle size={16} className="status-icon rejected" />
-      default: return <FileText size={16} />
+  // File Upload State
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [dragActive, setDragActive] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedReceipt, setSubmittedReceipt] = useState(null);
+
+  // Derive districts and tehsils from statesData
+  const currentStateObj = statesData.find(s => s.state === selectedState) || statesData[0];
+  const currentDistricts = currentStateObj ? currentStateObj.districts : [];
+  const currentDistrictObj = currentDistricts.find(d => d.name === selectedDistrict) || currentDistricts[0];
+  const currentTehsils = currentDistrictObj ? currentDistrictObj.tehsils : [];
+  const currentTehsilObj = currentTehsils.find(t => t.name === selectedTehsil) || currentTehsils[0];
+  const currentVillages = currentTehsilObj ? currentTehsilObj.villages : ['Khairpur', 'Rampur', 'Shahpur'];
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    if (formErrors[name]) {
+      setFormErrors(prev => ({ ...prev, [name]: null }));
     }
+  };
+
+  // Drag & drop handlers
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      validateAndSetFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleFileInput = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      validateAndSetFile(e.target.files[0]);
+    }
+  };
+
+  const validateAndSetFile = (file) => {
+    const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+      setFormErrors(prev => ({ ...prev, file: 'Only PDF, JPG, or PNG files are supported.' }));
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      setFormErrors(prev => ({ ...prev, file: 'File size exceeds the 10MB limit.' }));
+      return;
+    }
+    setUploadedFile({
+      name: file.name,
+      size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+      type: file.type
+    });
+    setFormErrors(prev => ({ ...prev, file: null }));
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.fullName.trim()) errors.fullName = 'Full Name is required.';
+    if (!formData.mobileNumber.trim() || formData.mobileNumber.length < 10) {
+      errors.mobileNumber = 'Valid 10-digit mobile number is required.';
+    }
+    if (!formData.khasraNumber.trim()) errors.khasraNumber = 'Khasra / Plot Number is required.';
+    if (!formData.khataNumber.trim()) errors.khataNumber = 'Khata Number is required.';
+    if (!formData.purposeRemarks.trim()) errors.purposeRemarks = 'Purpose of application is required.';
+    if (!uploadedFile) errors.file = 'Please upload supporting deed or succession order.';
+    if (!formData.declarationAccepted) {
+      errors.declaration = 'You must accept the legal declaration before submitting.';
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      window.scrollTo({ top: 180, behavior: 'smooth' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      const generatedId = `RS-APP-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+      setSubmittedReceipt({
+        id: generatedId,
+        date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        applicant: formData.fullName,
+        service: formData.serviceType,
+        plot: `${formData.khasraNumber} (Khata: ${formData.khataNumber})`,
+        location: `${selectedVillage}, ${selectedTehsil}, ${selectedDistrict}, ${selectedState}`,
+        officer: 'Revenue Inspector / Nayab Tehsildar Desk'
+      });
+      setIsSubmitting(false);
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }, 1200);
+  };
+
+  if (submittedReceipt) {
+    return (
+      <div className="form-submission-success-wrap">
+        <div className="official-ack-slip">
+          <div className="ack-header">
+            <div className="ack-header-emblem">
+              <span className="gov-seal-circle">🏛️</span>
+            </div>
+            <div className="ack-header-text">
+              <h4>भारत सरकार • राजस्व एवं भूमि सुधार विभाग</h4>
+              <h3>GOVERNMENT OF INDIA • REVENUE & LAND RECORDS PORTAL</h3>
+              <p>ACKNOWLEDGEMENT RECEIPT OF CITIZEN REVENUE APPLICATION</p>
+            </div>
+          </div>
+
+          <div className="ack-success-banner">
+            <CheckCircle2 size={24} className="text-success" />
+            <div>
+              <strong>Application Submitted Successfully!</strong>
+              <p>Your application has been registered with the Tehsil Revenue Desk.</p>
+            </div>
+          </div>
+
+          <div className="ack-details-grid">
+            <div className="ack-field">
+              <span className="ack-label">Application Reference ID</span>
+              <span className="ack-val-badge">{submittedReceipt.id}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Submission Date & Time</span>
+              <span className="ack-val">{submittedReceipt.date} at {submittedReceipt.time}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Applicant Name</span>
+              <span className="ack-val">{submittedReceipt.applicant}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Selected Service</span>
+              <span className="ack-val">{submittedReceipt.service}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Land Plot & Khata</span>
+              <span className="ack-val">{submittedReceipt.plot}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Revenue Jurisdiction</span>
+              <span className="ack-val">{submittedReceipt.location}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Assigned Desk</span>
+              <span className="ack-val">{submittedReceipt.officer}</span>
+            </div>
+            <div className="ack-field">
+              <span className="ack-label">Expected Processing Time</span>
+              <span className="ack-val">15 Working Days (RTS Act)</span>
+            </div>
+          </div>
+
+          <div className="ack-instructions-box">
+            <h6>Important Citizen Instructions:</h6>
+            <ul>
+              <li>Keep this Application ID handy to track progress under the <strong>Applications</strong> tab.</li>
+              <li>An automated SMS confirmation has been triggered to <strong>{formData.mobileNumber}</strong>.</li>
+              <li>No physical visit to Tehsil is required unless notified by the Revenue Inspector.</li>
+            </ul>
+          </div>
+
+          <div className="ack-actions-bar">
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => window.print()}
+            >
+              <Printer size={16} /> Print Acknowledgement
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => navigate('/citizen/dashboard')}
+            >
+              Go to Citizen Dashboard <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="applications">
-      <div className="container">
-        <div className="page-header">
-          <h1>Applications</h1>
-          <p>Submit and track your land record applications</p>
-        </div>
-
-        <div className="app-controls">
-          <button className="btn-new-app">
-            <Plus size={18} /> New Application
-          </button>
-          <div className="filter-tabs">
-            <button 
-              className={`filter-tab ${filter === 'all' ? 'active' : ''}`}
-              onClick={() => setFilter('all')}
-            >All</button>
-            <button 
-              className={`filter-tab ${filter === 'pending' ? 'active' : ''}`}
-              onClick={() => setFilter('pending')}
-            >Pending</button>
-            <button 
-              className={`filter-tab ${filter === 'in review' ? 'active' : ''}`}
-              onClick={() => setFilter('in review')}
-            >In Review</button>
-            <button 
-              className={`filter-tab ${filter === 'approved' ? 'active' : ''}`}
-              onClick={() => setFilter('approved')}
-            >Approved</button>
-            <button 
-              className={`filter-tab ${filter === 'rejected' ? 'active' : ''}`}
-              onClick={() => setFilter('rejected')}
-            >Rejected</button>
+    <div className="application-form-container">
+      {/* Form Header Card */}
+      <div className="form-portal-header-card">
+        <div className="header-seal-block">
+          <div className="gold-seal-badge">
+            <span>सत्यमेव जयते</span>
+          </div>
+          <div>
+            <span className="badge-form-type">FORM 1-A • REVENUE MUTATION & ROR</span>
+            <h2 className="form-page-main-heading">
+              {t('appFormTitle') && t('appFormTitle') !== 'appFormTitle' ? t('appFormTitle') : 'Application for Land Record Mutation & RoR Copy'}
+            </h2>
+            <p className="form-page-subtext">
+              {t('appFormSubtitle') && t('appFormSubtitle') !== 'appFormSubtitle' ? t('appFormSubtitle') : 'Ministry of Rural Development • Department of Land Resources • Government of India'}
+            </p>
           </div>
         </div>
+        <div className="form-sla-note">
+          <span className="sla-pill">⏳ SLA: 15 Days</span>
+          <span className="fee-pill">Free Citizen Service</span>
+        </div>
+      </div>
 
-        <div className="app-list">
-          {filteredApps.map((app) => (
-            <div key={app.id} className="app-card">
-              <div className="app-header">
-                <div className="app-id">{app.id}</div>
-                <div className="app-status">
-                  {getStatusIcon(app.status)}
-                  <span className={`status-label ${app.status.toLowerCase()}`}>{app.status}</span>
-                </div>
-              </div>
-              <div className="app-body">
-                <div className="app-detail">
-                  <span className="detail-label">Type</span>
-                  <span className="detail-value">{app.type}</span>
-                </div>
-                <div className="app-detail">
-                  <span className="detail-label">Applicant</span>
-                  <span className="detail-value">{app.applicant}</span>
-                </div>
-                <div className="app-detail">
-                  <span className="detail-label">Village</span>
-                  <span className="detail-value">{app.village}</span>
-                </div>
-                <div className="app-detail">
-                  <span className="detail-label">Date</span>
-                  <span className="detail-value">{app.date}</span>
-                </div>
-              </div>
-              <div className="app-actions">
-                <button className="app-action-btn view">
-                  <Eye size={16} /> View Details
-                </button>
+      <form onSubmit={handleSubmit} className="gov-formal-application" noValidate>
+        {/* SECTION 1: APPLICANT DETAILS */}
+        <section className="form-section-card">
+          <div className="section-title-bar">
+            <User size={18} className="sec-icon" />
+            <h3 className="section-heading-text">
+              {t('secApplicantDetails') && t('secApplicantDetails') !== 'secApplicantDetails' ? t('secApplicantDetails') : '1. Applicant Information'}
+            </h3>
+          </div>
+
+          <div className="form-grid-2col">
+            {/* Full Name */}
+            <div className="form-input-group">
+              <label htmlFor="fullName" className="gov-input-label">
+                {t('fullName') && t('fullName') !== 'fullName' ? t('fullName') : 'Full Name (as per Aadhaar)'} <span className="req-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                className={`gov-text-input ${formErrors.fullName ? 'has-error' : ''}`}
+                placeholder="e.g. Ramesh Kumar Verma"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+              />
+              {formErrors.fullName && <span className="error-hint">{formErrors.fullName}</span>}
+            </div>
+
+            {/* Father / Husband Name */}
+            <div className="form-input-group">
+              <label htmlFor="fatherHusbandName" className="gov-input-label">
+                Father's / Husband's Name <span className="req-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="fatherHusbandName"
+                name="fatherHusbandName"
+                className="gov-text-input"
+                placeholder="e.g. Late Shri Ramprasad Verma"
+                value={formData.fatherHusbandName}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {/* Aadhaar / VID */}
+            <div className="form-input-group">
+              <label htmlFor="aadhaarNumber" className="gov-input-label">
+                {t('aadhaarNumber') && t('aadhaarNumber') !== 'aadhaarNumber' ? t('aadhaarNumber') : 'Aadhaar / Virtual ID (last 4 digits shown)'}
+              </label>
+              <input
+                type="text"
+                id="aadhaarNumber"
+                name="aadhaarNumber"
+                maxLength={12}
+                className="gov-text-input"
+                placeholder="XXXX-XXXX-9842"
+                value={formData.aadhaarNumber}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {/* Mobile Number */}
+            <div className="form-input-group">
+              <label htmlFor="mobileNumber" className="gov-input-label">
+                {t('mobileNumber') && t('mobileNumber') !== 'mobileNumber' ? t('mobileNumber') : 'Mobile Number (for SMS updates)'} <span className="req-star">*</span>
+              </label>
+              <input
+                type="tel"
+                id="mobileNumber"
+                name="mobileNumber"
+                maxLength={10}
+                className={`gov-text-input ${formErrors.mobileNumber ? 'has-error' : ''}`}
+                placeholder="e.g. 9876543210"
+                value={formData.mobileNumber}
+                onChange={handleInputChange}
+                required
+              />
+              {formErrors.mobileNumber && <span className="error-hint">{formErrors.mobileNumber}</span>}
+            </div>
+
+            {/* Email Address */}
+            <div className="form-input-group">
+              <label htmlFor="emailAddress" className="gov-input-label">
+                {t('emailAddress') && t('emailAddress') !== 'emailAddress' ? t('emailAddress') : 'Email Address'}
+              </label>
+              <input
+                type="email"
+                id="emailAddress"
+                name="emailAddress"
+                className="gov-text-input"
+                placeholder="e.g. ramesh.verma@example.com"
+                value={formData.emailAddress}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {/* Residential Address (Full Width) */}
+            <div className="form-input-group full-width-col">
+              <label htmlFor="residentialAddress" className="gov-input-label">
+                {t('residentialAddress') && t('residentialAddress') !== 'residentialAddress' ? t('residentialAddress') : 'Residential Address'}
+              </label>
+              <input
+                type="text"
+                id="residentialAddress"
+                name="residentialAddress"
+                className="gov-text-input"
+                placeholder="House No., Street, Post Office, Pin Code"
+                value={formData.residentialAddress}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 2: LAND & PROPERTY LOCATION */}
+        <section className="form-section-card">
+          <div className="section-title-bar">
+            <MapPin size={18} className="sec-icon" />
+            <h3 className="section-heading-text">
+              {t('secPropertyDetails') && t('secPropertyDetails') !== 'secPropertyDetails' ? t('secPropertyDetails') : '2. Land & Property Details'}
+            </h3>
+          </div>
+
+          <div className="form-grid-2col">
+            {/* State */}
+            <div className="form-input-group">
+              <label htmlFor="selectedState" className="gov-input-label">
+                State (राज्य) <span className="req-star">*</span>
+              </label>
+              <select
+                id="selectedState"
+                className="gov-select-input"
+                value={selectedState}
+                onChange={(e) => {
+                  setSelectedState(e.target.value);
+                  const st = statesData.find(s => s.state === e.target.value);
+                  if (st && st.districts.length > 0) {
+                    setSelectedDistrict(st.districts[0].name);
+                  }
+                }}
+              >
+                {statesData.map(st => (
+                  <option key={st.state} value={st.state}>{st.state}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* District */}
+            <div className="form-input-group">
+              <label htmlFor="selectedDistrict" className="gov-input-label">
+                District (ज़िला) <span className="req-star">*</span>
+              </label>
+              <select
+                id="selectedDistrict"
+                className="gov-select-input"
+                value={selectedDistrict}
+                onChange={(e) => {
+                  setSelectedDistrict(e.target.value);
+                  const dist = currentDistricts.find(d => d.name === e.target.value);
+                  if (dist && dist.tehsils.length > 0) {
+                    setSelectedTehsil(dist.tehsils[0].name);
+                  }
+                }}
+              >
+                {currentDistricts.map(dist => (
+                  <option key={dist.name} value={dist.name}>{dist.name}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Tehsil */}
+            <div className="form-input-group">
+              <label htmlFor="selectedTehsil" className="gov-input-label">
+                Tehsil / Sub-District (तहसील) <span className="req-star">*</span>
+              </label>
+              <select
+                id="selectedTehsil"
+                className="gov-select-input"
+                value={selectedTehsil}
+                onChange={(e) => setSelectedTehsil(e.target.value)}
+              >
+                {currentTehsils.map(teh => (
+                  <option key={teh.name} value={teh.name}>{teh.name}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Village */}
+            <div className="form-input-group">
+              <label htmlFor="selectedVillage" className="gov-input-label">
+                Village / Mauza (ग्राम / मौजा) <span className="req-star">*</span>
+              </label>
+              <select
+                id="selectedVillage"
+                className="gov-select-input"
+                value={selectedVillage}
+                onChange={(e) => setSelectedVillage(e.target.value)}
+              >
+                {currentVillages.map(v => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Khasra / Plot Number */}
+            <div className="form-input-group">
+              <label htmlFor="khasraNumber" className="gov-input-label">
+                Khasra / Plot Number (खसरा संख्या) <span className="req-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="khasraNumber"
+                name="khasraNumber"
+                className={`gov-text-input ${formErrors.khasraNumber ? 'has-error' : ''}`}
+                placeholder="e.g. 124/2 or 45/1"
+                value={formData.khasraNumber}
+                onChange={handleInputChange}
+                required
+              />
+              {formErrors.khasraNumber && <span className="error-hint">{formErrors.khasraNumber}</span>}
+            </div>
+
+            {/* Khata Number */}
+            <div className="form-input-group">
+              <label htmlFor="khataNumber" className="gov-input-label">
+                Khatauni / Khata Number (खाता संख्या) <span className="req-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="khataNumber"
+                name="khataNumber"
+                className={`gov-text-input ${formErrors.khataNumber ? 'has-error' : ''}`}
+                placeholder="e.g. 00342"
+                value={formData.khataNumber}
+                onChange={handleInputChange}
+                required
+              />
+              {formErrors.khataNumber && <span className="error-hint">{formErrors.khataNumber}</span>}
+            </div>
+
+            {/* Land Area */}
+            <div className="form-input-group">
+              <label htmlFor="areaSize" className="gov-input-label">
+                Land Area (रकबा / क्षेत्रफल)
+              </label>
+              <div className="input-with-select">
+                <input
+                  type="text"
+                  id="areaSize"
+                  name="areaSize"
+                  className="gov-text-input"
+                  placeholder="e.g. 1.25"
+                  value={formData.areaSize}
+                  onChange={handleInputChange}
+                />
+                <select
+                  name="areaUnit"
+                  value={formData.areaUnit}
+                  onChange={handleInputChange}
+                  className="gov-unit-select"
+                >
+                  <option value="Hectares">Hectares</option>
+                  <option value="Acres">Acres</option>
+                  <option value="Bigha">Bigha</option>
+                  <option value="Sq. Meters">Sq. Meters</option>
+                </select>
               </div>
             </div>
-          ))}
-        </div>
 
-        {filteredApps.length === 0 && (
-          <div className="no-apps">
-            <p>No applications found for the selected filter.</p>
+            {/* Land Classification */}
+            <div className="form-input-group">
+              <label htmlFor="landClassification" className="gov-input-label">
+                Land Classification (भूमि की श्रेणी)
+              </label>
+              <select
+                id="landClassification"
+                name="landClassification"
+                className="gov-select-input"
+                value={formData.landClassification}
+                onChange={handleInputChange}
+              >
+                <option value="Agricultural (कृषि भूमि)">Agricultural (कृषि भूमि)</option>
+                <option value="Residential (आवासीय)">Residential (आवासीय)</option>
+                <option value="Commercial (व्यावसायिक)">Commercial (व्यावसायिक)</option>
+                <option value="Government / Gram Sabha (सरकारी / ग्राम सभा)">Government / Gram Sabha</option>
+              </select>
+            </div>
           </div>
-        )}
-      </div>
-    </div>
-  )
-}
+        </section>
 
-export default Applications
+        {/* SECTION 3: SERVICE DETAILS & PURPOSE */}
+        <section className="form-section-card">
+          <div className="section-title-bar">
+            <Briefcase size={18} className="sec-icon" />
+            <h3 className="section-heading-text">
+              {t('secServiceDetails') && t('secServiceDetails') !== 'secServiceDetails' ? t('secServiceDetails') : '3. Service Selection & Purpose'}
+            </h3>
+          </div>
+
+          <div className="form-grid-2col">
+            {/* Service Type */}
+            <div className="form-input-group full-width-col">
+              <label htmlFor="serviceType" className="gov-input-label">
+                {t('serviceType') && t('serviceType') !== 'serviceType' ? t('serviceType') : 'Service Type (आवेदन प्रकार)'} <span className="req-star">*</span>
+              </label>
+              <select
+                id="serviceType"
+                name="serviceType"
+                className="gov-select-input"
+                value={formData.serviceType}
+                onChange={handleInputChange}
+              >
+                <option value="Mutation / Dakhil-Kharij (नामांतरण)">Mutation / Dakhil-Kharij (नामांतरण - Sale / Succession / Gift)</option>
+                <option value="Certified RoR Copy (प्रमाणित खतौनी नकल)">Certified Record of Rights (RoR / Khatauni नकल)</option>
+                <option value="Boundary Demarcation (सीमांकन / पैमाइश)">Boundary Demarcation & Map Verification (सीमांकन / पैमाइश)</option>
+                <option value="Land Use Conversion (कृषि से गैर-कृषि परिवर्तन)">Land Use Conversion / 143 Order (भू-उपयोग परिवर्तन)</option>
+                <option value="Correction of Clerical Error (अभिलेख दुरुस्ती)">Correction in Revenue Records (अभिलेख दुरुस्ती)</option>
+              </select>
+            </div>
+
+            {/* Purpose / Remarks Textarea (Full Width) */}
+            <div className="form-input-group full-width-col">
+              <label htmlFor="purposeRemarks" className="gov-input-label">
+                {t('purposeRemarks') && t('purposeRemarks') !== 'purposeRemarks' ? t('purposeRemarks') : 'Purpose of Application / Mutation Details (आवेदन का विवरण)'} <span className="req-star">*</span>
+              </label>
+              <textarea
+                id="purposeRemarks"
+                name="purposeRemarks"
+                rows={4}
+                className={`gov-textarea-input ${formErrors.purposeRemarks ? 'has-error' : ''}`}
+                placeholder="Provide detailed description of purchase, inheritance, or reason for requesting certified land record mutation..."
+                value={formData.purposeRemarks}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+              {formErrors.purposeRemarks && (
+                <span className="error-hint">{formErrors.purposeRemarks}</span>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: DOCUMENT ATTACHMENTS (DRAG & DROP ZONE) */}
+        <section className="form-section-card">
+          <div className="section-title-bar">
+            <FileCheck size={18} className="sec-icon" />
+            <h3 className="section-heading-text">
+              {t('secDocumentUpload') && t('secDocumentUpload') !== 'secDocumentUpload' ? t('secDocumentUpload') : '4. Supporting Documents Upload'}
+            </h3>
+          </div>
+
+          <div className="upload-dropzone-wrapper">
+            <div
+              className={`gov-upload-dropzone ${dragActive ? 'drag-active' : ''} ${uploadedFile ? 'has-file' : ''}`}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            >
+              {!uploadedFile ? (
+                <div className="dropzone-empty-state">
+                  <div className="dropzone-icon-circle">
+                    <Upload size={32} />
+                  </div>
+                  <h4 className="dropzone-main-title">
+                    {t('uploadDocTitle') && t('uploadDocTitle') !== 'uploadDocTitle' ? t('uploadDocTitle') : 'Upload Supporting Land Deed / Sale Deed / Succession Order'}
+                  </h4>
+                  <p className="dropzone-sub-hint">
+                    {t('uploadDocHint') && t('uploadDocHint') !== 'uploadDocHint' ? t('uploadDocHint') : 'Drag and drop PDF or JPG/PNG files here (Max 10MB). Scanned copy must be clearly legible.'}
+                  </p>
+                  <label className="btn-browse-file">
+                    <span>Browse File from Device</span>
+                    <input
+                      type="file"
+                      className="hidden-file-input"
+                      onChange={handleFileInput}
+                      accept=".pdf,.jpg,.jpeg,.png"
+                    />
+                  </label>
+                  <div className="accepted-formats-badges">
+                    <span className="format-badge">PDF (recommended)</span>
+                    <span className="format-badge">JPG / JPEG</span>
+                    <span className="format-badge">PNG</span>
+                    <span className="format-badge">Max 10 MB</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="uploaded-file-card">
+                  <div className="file-info-left">
+                    <FileText size={36} className="text-primary-blue" />
+                    <div>
+                      <h5 className="file-title-text">{uploadedFile.name}</h5>
+                      <span className="file-meta-text">{uploadedFile.size} • Ready for verification</span>
+                    </div>
+                  </div>
+                  <div className="file-card-actions">
+                    <span className="file-ready-tag">
+                      <CheckCircle2 size={16} /> Attached
+                    </span>
+                    <button
+                      type="button"
+                      className="btn-remove-file"
+                      onClick={() => setUploadedFile(null)}
+                      title="Remove file"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {formErrors.file && <span className="error-hint mt-2">{formErrors.file}</span>}
+          </div>
+        </section>
+
+        {/* SECTION 5: LEGAL DECLARATION & SUBMISSION */}
+        <div className="form-submission-footer-card">
+          <label className="gov-checkbox-row">
+            <input
+              type="checkbox"
+              name="declarationAccepted"
+              checked={formData.declarationAccepted}
+              onChange={handleInputChange}
+            />
+            <span className="checkbox-legal-text">
+              I hereby solemnly declare that all particulars furnished above and attachments provided are true, correct, and authentic to the best of my knowledge. I understand that submitting false declarations or forged documents is punishable under Section 199 and 200 of the Indian Penal Code (IPC) and the Information Technology Act, 2000.
+            </span>
+          </label>
+          {formErrors.declaration && (
+            <span className="error-hint block mt-2">{formErrors.declaration}</span>
+          )}
+
+          <div className="form-btn-actions-row">
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => {
+                setFormData({
+                  fullName: '',
+                  fatherHusbandName: '',
+                  aadhaarNumber: '',
+                  mobileNumber: '',
+                  emailAddress: '',
+                  residentialAddress: '',
+                  serviceType: 'Mutation / Dakhil-Kharij (नामांतरण)',
+                  khasraNumber: '',
+                  khataNumber: '',
+                  areaSize: '',
+                  areaUnit: 'Hectares',
+                  landClassification: 'Agricultural (कृषि भूमि)',
+                  purposeRemarks: '',
+                  declarationAccepted: false
+                });
+                setUploadedFile(null);
+                setFormErrors({});
+              }}
+            >
+              Reset Form
+            </button>
+
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <span className="submitting-spinner-row">
+                  <span className="btn-spinner"></span>
+                  <span>Transmitting to Revenue Authority...</span>
+                </span>
+              ) : (
+                <span>
+                  {t('btnSubmitApplication') && t('btnSubmitApplication') !== 'btnSubmitApplication'
+                    ? t('btnSubmitApplication')
+                    : 'Submit Application to Revenue Authority'}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default ApplicationForm;

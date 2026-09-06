@@ -1,6 +1,7 @@
 import React from 'react';
 import ApplicationForm from '../components/applications/ApplicationForm';
 import { Shield, Clock, FileCheck } from 'lucide-react';
+import './NewApplicationPage.css';
 
 export const NewApplicationPage = () => {
   return (

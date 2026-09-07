@@ -16,7 +16,7 @@ import LandRecordDetailPage from './pages/LandRecordDetailPage';
 import CitizenLoginPage from './pages/CitizenLoginPage';
 import ApplicationsPage from './pages/ApplicationsPage';
 import NotFoundPage from './pages/NotFoundPage';
-
+import ReviewQueuePage from './pages/ReviewQueuePage';
 export function App() {
   return (
     <Routes>
@@ -37,6 +37,7 @@ export function App() {
         <Route path="services" element={<ServicesPage />} />
         <Route path="grievance" element={<GrievancePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="review-queue" element={<ReviewQueuePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

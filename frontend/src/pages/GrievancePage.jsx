@@ -258,17 +258,17 @@ export const GrievancePage = () => {
                 <div className="help-detail-row">
                   <Phone size={16} className="text-secondary-blue" />
                   <div>
-                    <span className="help-lbl">टोल फ्री नंबर (Toll-Free):</span>
-                    <strong className="help-contact-number">1800-11-2026</strong>
-                    <span className="help-timing-note">09:00 AM – 06:00 PM (Mon – Sat)</span>
+                    <span className="help-lbl">प्रोटोटाइप सहायता (Demo Desk):</span>
+                    <strong className="help-contact-number">SIH 2026 Demonstration Desk</strong>
+                    <span className="help-timing-note">Evaluation Sandbox Only</span>
                   </div>
                 </div>
 
                 <div className="help-detail-row">
                   <Mail size={16} className="text-secondary-blue" />
                   <div>
-                    <span className="help-lbl">आधिकारिक ईमेल (Email):</span>
-                    <strong className="help-contact-email">grievance-recordsetu@gov.in</strong>
+                    <span className="help-lbl">प्रोजेक्ट ईमेल (Demo Contact):</span>
+                    <strong className="help-contact-email">demo-feedback@abhilekhsetu.internal (Demo Sandbox)</strong>
                   </div>
                 </div>
 
@@ -292,7 +292,7 @@ export const GrievancePage = () => {
 
               <div className="digital-seal-tag">
                 <ShieldCheck size={14} />
-                <span>Secured by NIC e-District Grievance Portal</span>
+                <span>AbhilekhSetu Prototype Grievance Redressal</span>
               </div>
             </div>
           </div>

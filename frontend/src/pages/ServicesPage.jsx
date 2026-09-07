@@ -47,13 +47,13 @@ export const ServicesPage = () => {
     },
     {
       id: 'verify',
-      title: 'Digital Certificate Verification Desk',
-      desc: 'Verify cryptographic hashes and authenticity of issued RoRs and mutation orders under IT Act 2000.',
+      title: 'Human Verification & Review Desk',
+      desc: 'Review, confirm, or correct AI-extracted land record entities flagged during automated validation.',
       icon: CheckCircle2,
-      sla: 'Instant Real-time Verification',
-      fee: 'Free Public Service',
-      link: '/verify',
-      btnText: 'Verify Certificate'
+      sla: 'Official Revenue Desk',
+      fee: 'Administrative Desk',
+      link: '/review-queue',
+      btnText: 'Open Review Queue'
     },
     {
       id: 'grievance',

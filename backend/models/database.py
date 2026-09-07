@@ -1,13 +1,20 @@
 import os
+from pathlib import Path
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+backend_dir = Path(__file__).resolve().parent.parent
+default_db_file = backend_dir / "recordsetu.db"
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "sqlite:///./recordsetu.db",
+    f"sqlite:///{default_db_file.as_posix()}",
 )
+
+# Standardize legacy postgres:// prefix from cloud providers (Render, Railway, etc.)
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 
 connect_args = {}
@@ -47,3 +54,5 @@ from models.document import Document
 from models.land_record import LandRecord
 from models.validation import ValidationResult
 from models.audit import AuditLog
+
+Base.metadata.create_all(bind=engine)

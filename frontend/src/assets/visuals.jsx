@@ -91,15 +91,15 @@ export const DigitalIndiaLogo = ({ width = 110, height = 42, className = '' }) =
   </svg>
 );
 
-// 3. RecordSetu Logo
-export const RecordSetuLogo = ({ width = 44, height = 44, className = '' }) => (
+// 3. AbhilekhSetu Logo
+export const AbhilekhSetuLogo = ({ width = 44, height = 44, className = '' }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className={`recordsetu-logo-svg ${className}`}
+    className={`abhilekhsetu-logo-svg ${className}`}
   >
     {/* Background Shield */}
     <path
@@ -145,6 +145,8 @@ export const RecordSetuLogo = ({ width = 44, height = 44, className = '' }) => (
     </defs>
   </svg>
 );
+
+export const RecordSetuLogo = AbhilekhSetuLogo;
 
 // 4. Tricolor Ribbon
 export const TricolorRibbon = ({ width = 90, height = 18, className = '' }) => (

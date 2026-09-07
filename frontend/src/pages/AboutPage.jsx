@@ -1,5 +1,5 @@
 import React from 'react';
-import { AshokaEmblem, DigitalIndiaLogo, RecordSetuLogo } from '../assets/visuals';
+import { AshokaEmblem, DigitalIndiaLogo, AbhilekhSetuLogo } from '../assets/visuals';
 import { ShieldCheck, Database, Map, CheckCircle2 } from 'lucide-react';
 
 export const AboutPage = () => {
@@ -9,10 +9,10 @@ export const AboutPage = () => {
         <div className="container header-bar-inner">
           <div>
             <div className="breadcrumbs">
-              <span>Home</span> / <strong>About RecordSetu</strong>
+              <span>Home</span> / <strong>About AbhilekhSetu</strong>
             </div>
-            <h1 className="page-title">हमारे बारे में • About RecordSetu & DILRMP</h1>
-            <p className="page-subtitle">Digital India Land Records Modernization Programme • Department of Land Resources</p>
+            <h1 className="page-title">हमारे बारे में • About AbhilekhSetu & Land Digitization</h1>
+            <p className="page-subtitle">Intelligent Land Record Digitization & Validation • SIH26018 Prototype</p>
           </div>
         </div>
       </div>
@@ -20,9 +20,9 @@ export const AboutPage = () => {
       <div className="container page-body-container" style={{ maxWidth: '960px', margin: '2rem auto' }}>
         <div className="about-card" style={{ background: '#FFFFFF', padding: '2.5rem', borderRadius: '8px', border: '1px solid #D1D5DB' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem', borderBottom: '1px solid #E5E7EB', paddingBottom: '1.5rem' }}>
-            <RecordSetuLogo width={64} height={64} />
+            <AbhilekhSetuLogo width={64} height={64} />
             <div>
-              <h2 style={{ color: '#163A63', fontSize: '1.8rem', fontWeight: '800' }}>RecordSetu Portal</h2>
+              <h2 style={{ color: '#163A63', fontSize: '1.8rem', fontWeight: '800' }}>AbhilekhSetu Prototype</h2>
               <p style={{ color: '#4B5563', fontSize: '1.05rem' }}>"भूमि अभिलेख से विश्वास तक" • From Land Records to Trusted Digital Records</p>
             </div>
           </div>
@@ -48,8 +48,8 @@ export const AboutPage = () => {
             </div>
             <div style={{ padding: '1.25rem', background: '#F8FAFC', borderRadius: '6px', border: '1px solid #E2E8F0' }}>
               <ShieldCheck size={24} style={{ color: '#163A63', marginBottom: '0.5rem' }} />
-              <h4 style={{ color: '#163A63', fontSize: '1rem', marginBottom: '0.4rem' }}>Tamper-Proof Verification</h4>
-              <p style={{ fontSize: '0.88rem', color: '#64748B' }}>Cryptographic digital signatures and QR verification ensuring full legal validity under the IT Act 2000.</p>
+              <h4 style={{ color: '#163A63', fontSize: '1rem', marginBottom: '0.4rem' }}>Validation & Audit Trails</h4>
+              <p style={{ fontSize: '0.88rem', color: '#64748B' }}>Automated entity validation and human audit trails ensuring land record accuracy and accountability.</p>
             </div>
           </div>
         </div>

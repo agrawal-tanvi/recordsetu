@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, Query
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from models.database import get_db
+from models.document import Document
 from models.land_record import LandRecord
 
 
@@ -17,71 +19,83 @@ def search_land_records(
     owner_name: str | None = Query(default=None),
     village: str | None = Query(default=None),
     district: str | None = Query(default=None),
+    q: str | None = Query(default=None),
     db: Session = Depends(get_db),
 ):
     """
-    Search land records using one or more fields.
+    Search land records using one or more fields or a general query.
 
     Supported filters:
     - khasra_no
     - owner_name
     - village
     - district
+    - q (general keyword search)
     """
 
-    if not any([
-        khasra_no,
-        owner_name,
-        village,
-        district,
-    ]):
-        return {
-            "count": 0,
-            "items": [],
-            "message": "Provide at least one search parameter.",
-        }
+    khasra_val = khasra_no if isinstance(khasra_no, str) and khasra_no.strip() else None
+    owner_val = owner_name if isinstance(owner_name, str) and owner_name.strip() else None
+    village_val = village if isinstance(village, str) and village.strip() else None
+    district_val = district if isinstance(district, str) and district.strip() else None
+    q_val = q if isinstance(q, str) and q.strip() else None
 
     query = db.query(LandRecord)
 
-    if khasra_no:
+    if q_val:
         query = query.filter(
-            LandRecord.khasra_no.ilike(f"%{khasra_no}%")
+            or_(
+                LandRecord.khasra_no.ilike(f"%{q_val}%"),
+                LandRecord.owner_name.ilike(f"%{q_val}%"),
+                LandRecord.village.ilike(f"%{q_val}%"),
+                LandRecord.district.ilike(f"%{q_val}%"),
+                LandRecord.document_id.ilike(f"%{q_val}%"),
+            )
         )
 
-    if owner_name:
+    if khasra_val:
         query = query.filter(
-            LandRecord.owner_name.ilike(f"%{owner_name}%")
+            LandRecord.khasra_no.ilike(f"%{khasra_val}%")
         )
 
-    if village:
+    if owner_val:
         query = query.filter(
-            LandRecord.village.ilike(f"%{village}%")
+            LandRecord.owner_name.ilike(f"%{owner_val}%")
         )
 
-    if district:
+    if village_val:
         query = query.filter(
-            LandRecord.district.ilike(f"%{district}%")
+            LandRecord.village.ilike(f"%{village_val}%")
+        )
+
+    if district_val:
+        query = query.filter(
+            LandRecord.district.ilike(f"%{district_val}%")
         )
 
     records = (
         query
         .order_by(LandRecord.id.desc())
+        .limit(100)
         .all()
     )
 
+    items = []
+    for record in records:
+        doc = db.query(Document).filter(Document.document_id == record.document_id).first()
+        status = doc.status if doc else "DIGITIZED"
+        items.append({
+            "id": record.id,
+            "document_id": record.document_id,
+            "khasra_no": record.khasra_no,
+            "owner_name": record.owner_name,
+            "village": record.village,
+            "district": record.district,
+            "area": record.area,
+            "area_unit": record.area_unit,
+            "status": status,
+        })
+
     return {
-        "count": len(records),
-        "items": [
-            {
-                "id": record.id,
-                "document_id": record.document_id,
-                "khasra_no": record.khasra_no,
-                "owner_name": record.owner_name,
-                "village": record.village,
-                "district": record.district,
-                "area": record.area,
-                "area_unit": record.area_unit,
-            }
-            for record in records
-        ],
+        "count": len(items),
+        "items": items,
     }

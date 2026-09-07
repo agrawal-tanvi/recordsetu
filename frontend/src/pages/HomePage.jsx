@@ -53,7 +53,8 @@ export const HomePage = () => {
 
   const handleHeroSearch = (e) => {
     e.preventDefault();
-    navigate(`/land-records/search?state=${encodeURIComponent(selectedState)}&district=${encodeURIComponent(selectedDistrict)}&tehsil=${encodeURIComponent(selectedTehsil)}&village=${encodeURIComponent(selectedVillage)}&criteria=${searchCriteria}&q=${encodeURIComponent(searchQueryValue || '124/2')}`);
+    const queryParam = searchQueryValue.trim() ? `&q=${encodeURIComponent(searchQueryValue.trim())}` : '';
+    navigate(`/land-records/search?state=${encodeURIComponent(selectedState)}&district=${encodeURIComponent(selectedDistrict)}&tehsil=${encodeURIComponent(selectedTehsil)}&village=${encodeURIComponent(selectedVillage)}&criteria=${searchCriteria}${queryParam}`);
   };
 
   return (
@@ -554,8 +555,8 @@ export const HomePage = () => {
                       </tbody>
                     </table>
                     <div className="ai-preview-actions">
-                      <Link to="/verify" className="btn-mini-approve">{t('btnApprove')}</Link>
-                      <Link to="/verify" className="btn-mini-review">{t('btnReview')}</Link>
+                      <Link to="/review-queue" className="btn-mini-approve">{t('btnApprove')}</Link>
+                      <Link to="/review-queue" className="btn-mini-review">{t('btnReview')}</Link>
                     </div>
                   </div>
                 </div>
@@ -586,7 +587,7 @@ export const HomePage = () => {
                       </tbody>
                     </table>
                     <div className="plot-preview-actions">
-                      <Link to="/land-records/1" className="btn-mini-action">{t('btnViewRoR')}</Link>
+                      <Link to="/land-records/search?q=124/2" className="btn-mini-action">{t('btnViewRoR')}</Link>
                       <Link to="/maps" className="btn-mini-action">{t('btnMap')}</Link>
                     </div>
                   </div>

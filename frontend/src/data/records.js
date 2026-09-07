@@ -20,7 +20,7 @@ export const initialRecords = [
     encumbrance: "Nil (Clear Title)",
     mutationNumber: "MUT-UP-2018-9921",
     coordinates: "26.8524° N, 80.9982° E",
-    digitalSignature: "CERT-IN-NIC-UP-98214B87A"
+    digitalSignature: "DEMO-REF-UP-98214B87A"
   },
   {
     id: "RS-2026-002",
@@ -43,7 +43,7 @@ export const initialRecords = [
     encumbrance: "Bank Hypothecation (SBI Agri Loan)",
     mutationNumber: "MUT-MH-2019-1029",
     coordinates: "18.5793° N, 73.9814° E",
-    digitalSignature: "CERT-IN-NIC-MH-44219A91E"
+    digitalSignature: "DEMO-REF-MH-44219A91E"
   },
   {
     id: "RS-2026-003",
@@ -66,7 +66,7 @@ export const initialRecords = [
     encumbrance: "Nil (Clear Title)",
     mutationNumber: "MUT-WB-2020-5510",
     coordinates: "22.6234° N, 88.4721° E",
-    digitalSignature: "CERT-IN-NIC-WB-11928C33F"
+    digitalSignature: "DEMO-REF-WB-11928C33F"
   },
   {
     id: "RS-2026-004",
@@ -89,7 +89,7 @@ export const initialRecords = [
     encumbrance: "Nil (Clear Title)",
     mutationNumber: "MUT-BR-2017-4829",
     coordinates: "25.6297° N, 85.0441° E",
-    digitalSignature: "CERT-IN-NIC-BR-78321D55B"
+    digitalSignature: "DEMO-REF-BR-78321D55B"
   },
   {
     id: "RS-2026-005",
@@ -112,7 +112,7 @@ export const initialRecords = [
     encumbrance: "Nil (Clear Title)",
     mutationNumber: "MUT-KA-2021-3910",
     coordinates: "12.8452° N, 77.6602° E",
-    digitalSignature: "CERT-IN-NIC-KA-99102E77D"
+    digitalSignature: "DEMO-REF-KA-99102E77D"
   },
   {
     id: "RS-2026-006",
@@ -135,6 +135,6 @@ export const initialRecords = [
     encumbrance: "Nil (Clear Title)",
     mutationNumber: "MUT-RJ-2016-8821",
     coordinates: "26.8122° N, 75.7891° E",
-    digitalSignature: "CERT-IN-NIC-RJ-33291F44A"
+    digitalSignature: "DEMO-REF-RJ-33291F44A"
   }
 ];

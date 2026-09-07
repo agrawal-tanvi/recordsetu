@@ -1,41 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './LandRecordsSearchPage.css';
 import { Link, useSearchParams } from 'react-router-dom';
 import SearchForm from '../components/land-records/SearchForm';
-import { initialRecords } from '../data/records';
-import { ShieldCheck, ArrowRight, FileText, Database, CheckCircle } from 'lucide-react';
+import { searchLandRecords } from '../services/api';
+import { ShieldCheck, Database, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 
 export const LandRecordsSearchPage = () => {
   const [searchParams] = useSearchParams();
   const initialQ = searchParams.get('q') || '';
-  const [filterCriteria, setFilterCriteria] = useState({ query: initialQ });
+
+  const [records, setRecords] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [filterCriteria, setFilterCriteria] = useState(initialQ ? { query: initialQ } : {});
+
+  const fetchRecords = useCallback(async (criteria = {}) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const params = {};
+      if (criteria.district) params.district = criteria.district;
+      if (criteria.village) params.village = criteria.village;
+
+      if (criteria.type && criteria.query) {
+        if (criteria.type === 'khasra') {
+          params.khasra_no = criteria.query;
+        } else if (criteria.type === 'owner') {
+          params.owner_name = criteria.query;
+        } else {
+          params.q = criteria.query;
+        }
+      } else if (criteria.query) {
+        params.q = criteria.query;
+      }
+
+      const res = await searchLandRecords(params);
+      setRecords(res.items || []);
+    } catch (err) {
+      console.error('Failed to search land records:', err);
+      setError(err.message || 'Failed to search land records');
+      setRecords([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchRecords(filterCriteria);
+  }, [fetchRecords, filterCriteria]);
 
   const handleSearch = (criteria) => {
-    setFilterCriteria(criteria);
+    setFilterCriteria(criteria || {});
   };
 
   const handleReset = () => {
     setFilterCriteria({});
   };
-
-  const filtered = initialRecords.filter(r => {
-    if (filterCriteria.state && r.state !== filterCriteria.state) return false;
-    if (filterCriteria.district && r.district !== filterCriteria.district) return false;
-    if (filterCriteria.tehsil && r.tehsil !== filterCriteria.tehsil) return false;
-    if (filterCriteria.village && r.village !== filterCriteria.village) return false;
-    if (filterCriteria.query) {
-      const q = filterCriteria.query.toLowerCase();
-      return (
-        r.ownerName.toLowerCase().includes(q) ||
-        r.surveyNumber.includes(q) ||
-        (r.khasraNumber && r.khasraNumber.toLowerCase().includes(q)) ||
-        (r.khataNumber && r.khataNumber.toLowerCase().includes(q)) ||
-        r.id.toLowerCase().includes(q) ||
-        r.village.toLowerCase().includes(q)
-      );
-    }
-    return true;
-  });
 
   return (
     <div className="search-records-page">
@@ -49,12 +70,12 @@ export const LandRecordsSearchPage = () => {
             <span className="page-sub-badge">केंद्रीय भू-अभिलेख पोर्टल | CENTRAL REVENUE LAND LEDGER</span>
             <h1 className="page-title">Search & Access Land Records (भू-अभिलेख)</h1>
             <p className="page-subtitle">
-              Find land ownership details, survey information, property records and other government land services through the RecordSetu digital portal.
+              Find land ownership details, survey information, property records and other government land services through the AbhilekhSetu digital portal.
             </p>
           </div>
           <div className="header-actions">
             <span className="badge-sync">
-              <CheckCircle size={14} /> DILRMP Central Ledger Synced
+              <CheckCircle size={14} /> AbhilekhSetu Prototype Database
             </span>
           </div>
         </div>
@@ -69,13 +90,13 @@ export const LandRecordsSearchPage = () => {
           <div className="results-header-bar">
             <div className="results-title-group">
               <h3 className="results-count-title">
-                All Verified Records ({filtered.length})
+                {loading ? 'Searching...' : `All Digitized Records (${records.length})`}
               </h3>
               <span className="results-ledger-badge">
-                ✓ Synchronized with State Revenue Ledger
+                ✓ AbhilekhSetu Prototype Dataset
               </span>
             </div>
-            <span className="record-total-hint">Displaying verified Cadastral RoRs</span>
+            <span className="record-total-hint">Displaying digitized Land Records</span>
           </div>
 
           {/* Results Table */}
@@ -94,32 +115,56 @@ export const LandRecordsSearchPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {filtered.length > 0 ? (
-                  filtered.map(r => (
-                    <tr key={r.id}>
+                {loading ? (
+                  <tr>
+                    <td colSpan="8" className="empty-table-cell">
+                      <RefreshCw size={28} style={{ margin: '0 auto 0.75rem auto', color: '#163A63', animation: 'spin 1s linear infinite' }} />
+                      <p>Searching revenue records database...</p>
+                    </td>
+                  </tr>
+                ) : error ? (
+                  <tr>
+                    <td colSpan="8" className="empty-table-cell">
+                      <AlertCircle size={32} style={{ margin: '0 auto 0.75rem auto', color: '#DC2626' }} />
+                      <p style={{ color: '#DC2626' }}>{error}</p>
+                      <button type="button" className="btn btn-outline btn-sm" onClick={handleReset} style={{ marginTop: '0.75rem' }}>
+                        Retry / Clear Filters
+                      </button>
+                    </td>
+                  </tr>
+                ) : records.length > 0 ? (
+                  records.map((r) => (
+                    <tr key={r.document_id || r.id}>
                       <td>
-                        <span className="record-id-mono">{r.id}</span>
+                        <span className="record-id-mono">{r.document_id || `REC-${r.id}`}</span>
                       </td>
                       <td>
-                        <strong className="record-owner-name">{r.ownerName}</strong>
-                        {r.relationName && (
-                          <span className="record-relation-sub">{r.relationName}</span>
+                        <strong className="record-owner-name">{r.owner_name || '—'}</strong>
+                      </td>
+                      <td>Uttar Pradesh</td>
+                      <td>{r.district || '—'}</td>
+                      <td>{r.village || '—'}</td>
+                      <td>
+                        <strong className="khasra-number-tag">{r.khasra_no || '—'}</strong>
+                      </td>
+                      <td>
+                        {r.status === 'VERIFIED' ? (
+                          <span className="status-badge status-verified">
+                            <ShieldCheck size={14} /> VERIFIED
+                          </span>
+                        ) : r.status === 'REVIEW_REQUIRED' ? (
+                          <span className="status-badge" style={{ background: '#FEF3C7', color: '#92400E' }}>
+                            <AlertCircle size={14} /> REVIEW REQUIRED
+                          </span>
+                        ) : (
+                          <span className="status-badge status-verified">
+                            <CheckCircle size={14} /> {r.status || 'DIGITIZED'}
+                          </span>
                         )}
-                      </td>
-                      <td>{r.state}</td>
-                      <td>{r.district}</td>
-                      <td>{r.village}</td>
-                      <td>
-                        <strong className="khasra-number-tag">{r.surveyNumber}</strong>
-                      </td>
-                      <td>
-                        <span className="status-badge status-verified">
-                          <ShieldCheck size={14} /> {r.status}
-                        </span>
                       </td>
                       <td style={{ textAlign: 'right' }}>
                         <Link
-                          to={`/land-records/${r.id}`}
+                          to={`/land-records/${r.document_id || r.id}`}
                           className="btn-table-action"
                         >
                           View Record →

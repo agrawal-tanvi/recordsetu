@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { Home, FileText, Map, Upload, ShieldCheck, MessageSquare, Info, Search } from 'lucide-react';
+import { Home, FileText, Map, Upload, ShieldCheck, ClipboardList, MessageSquare, Info, Search } from 'lucide-react';
 
 export const Navbar = () => {
   const { t } = useLanguage();
@@ -22,6 +22,7 @@ export const Navbar = () => {
     { path: '/land-records/search', label: t('navLandRecords'), icon: FileText },
     { path: '/maps', label: t('navBhuNaksha'), icon: Map },
     { path: '/upload', label: t('navUpload'), icon: Upload },
+    { path: '/review-queue', label: t('navReviewQueue') || 'Review Queue', icon: ClipboardList },
     { path: '/verify', label: t('navVerify'), icon: ShieldCheck },
     { path: '/grievance', label: t('navGrievance'), icon: MessageSquare },
     { path: '/about', label: t('navAbout'), icon: Info },

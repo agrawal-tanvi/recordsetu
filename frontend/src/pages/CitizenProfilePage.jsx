@@ -10,7 +10,7 @@ const CitizenProfilePage = () => {
   const [profile, setProfile] = useState({
     name: user?.name || 'Rajesh Kumar',
     mobile: user?.mobile || '9876543210',
-    email: user?.email || 'rajesh.kumar@example.gov.in',
+    email: user?.email || 'rajesh.kumar@example.com',
     state: user?.state || 'Uttar Pradesh',
     district: user?.district || 'Lucknow',
     village: user?.village || 'Gomti Nagar'

@@ -1,0 +1,31 @@
+record_id,khasra_no,owner_name,village,district,area,area_unit,khasra_confidence,owner_confidence,village_confidence,district_confidence,area_confidence,area_unit_confidence,expected_status,expected_reason
+REC-001,125,Ram Kumar,Sikandra,Agra,2.5,hectare,0.97,0.93,0.89,0.95,0.91,0.98,VALID,All fields valid
+REC-002,126,Shanti Devi,Nagla,Agra,1.8,hectare,0.96,0.94,0.92,0.95,0.90,0.97,VALID,All fields valid
+REC-003,127,Mohan Singh,Bichpuri,Agra,3.2,acre,0.98,0.91,0.88,0.94,0.92,0.96,VALID,All fields valid
+REC-004,128,Sita Patel,Khandoli,Agra,5.0,hectare,0.95,0.92,0.90,0.93,0.89,0.97,VALID,All fields valid
+REC-005,129,Ravi Kumar,Etmadpur,Agra,1.2,hectare,0.97,0.90,0.91,0.95,0.88,0.98,VALID,All fields valid
+REC-006,130,Geeta Sharma,Fatehabad,Agra,4.5,acre,0.96,0.93,0.89,0.94,0.90,0.96,VALID,All fields valid
+REC-007,131,Arjun Singh,Dayalbagh,Agra,2.0,hectare,0.98,0.94,0.92,0.95,0.93,0.97,VALID,All fields valid
+REC-008,132,Sunita Gupta,Shamsabad,Agra,3.8,hectare,0.95,0.91,0.88,0.93,0.89,0.98,VALID,All fields valid
+REC-009,133,Vikram Yadav,Bah,Agra,6.1,acre,0.97,0.92,0.90,0.94,0.91,0.96,VALID,All fields valid
+REC-010,134,Asha Rani,Kheragarh,Agra,2.2,hectare,0.96,0.93,0.91,0.95,0.92,0.97,VALID,All fields valid
+REC-011,,Rajesh Kumar,Sikandra,Agra,3.0,hectare,0.00,0.91,0.89,0.95,0.90,0.97,INVALID,KHASRA_NUMBER_MISSING
+REC-012,,Priya Singh,Nagla,Agra,1.5,hectare,0.00,0.92,0.88,0.94,0.89,0.96,INVALID,KHASRA_NUMBER_MISSING
+REC-013,,Amit Verma,Bichpuri,Agra,2.8,acre,0.00,0.90,0.87,0.93,0.91,0.95,INVALID,KHASRA_NUMBER_MISSING
+REC-014,,Neha Jain,Khandoli,Agra,4.0,hectare,0.00,0.93,0.90,0.94,0.88,0.97,INVALID,KHASRA_NUMBER_MISSING
+REC-015,135,,Sikandra,Agra,2.5,hectare,0.97,0.00,0.89,0.95,0.91,0.98,INVALID,OWNER_NAME_MISSING
+REC-016,136,,Nagla,Agra,1.8,hectare,0.96,0.00,0.92,0.95,0.90,0.97,INVALID,OWNER_NAME_MISSING
+REC-017,137,,Bichpuri,Agra,3.2,acre,0.98,0.00,0.88,0.94,0.92,0.96,INVALID,OWNER_NAME_MISSING
+REC-018,138,,Khandoli,Agra,5.0,hectare,0.95,0.00,0.90,0.93,0.89,0.97,INVALID,OWNER_NAME_MISSING
+REC-019,139,Ram Kumar,,Agra,2.5,hectare,0.97,0.93,0.00,0.95,0.91,0.98,INVALID,VILLAGE_MISSING
+REC-020,140,Shanti Devi,,Agra,1.8,hectare,0.96,0.94,0.00,0.95,0.90,0.97,INVALID,VILLAGE_MISSING
+REC-021,141,Mohan Singh,,Agra,3.2,acre,0.98,0.91,0.00,0.94,0.92,0.96,INVALID,VILLAGE_MISSING
+REC-022,142,Sita Patel,Sikandra,,2.5,hectare,0.97,0.92,0.89,0.00,0.91,0.98,INVALID,DISTRICT_MISSING
+REC-023,143,Ravi Kumar,Nagla,,1.8,hectare,0.96,0.90,0.92,0.00,0.90,0.97,INVALID,DISTRICT_MISSING
+REC-024,144,Geeta Sharma,Bichpuri,,3.2,acre,0.98,0.93,0.88,0.00,0.92,0.96,INVALID,DISTRICT_MISSING
+REC-025,145,Arjun Singh,Sikandra,Agra,0,hectare,0.97,0.94,0.89,0.95,0.00,0.98,INVALID,AREA_INVALID_ZERO
+REC-026,146,Sunita Gupta,Nagla,Agra,-2,hectare,0.96,0.91,0.92,0.95,0.00,0.97,INVALID,AREA_INVALID_NEGATIVE
+REC-027,147,Vikram Yadav,Bichpuri,Agra,9999,hectare,0.98,0.92,0.88,0.94,0.00,0.96,INVALID,AREA_INVALID_EXCESSIVE
+REC-028,148,Asha Rani,Sikandra,Agra,2.5,hectare,0.97,0.93,0.89,0.95,0.91,0.98,VALID,All fields valid (demonstrates confidence threshold)
+REC-029,149,Ram Kumar,Sikandra,Agra,2.5,hectare,0.97,0.70,0.89,0.95,0.91,0.98,REVIEW_REQUIRED,LOW_CONFIDENCE_OWNER
+REC-030,150,Shanti Devi,Nagla,Agra,1.8,hectare,0.96,0.92,0.92,0.95,0.65,0.97,REVIEW_REQUIRED,LOW_CONFIDENCE_AREA

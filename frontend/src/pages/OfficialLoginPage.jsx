@@ -60,7 +60,7 @@ const OfficialLoginPage = () => {
 
         <form onSubmit={handleLogin}>
           <Input
-            label="Official ID / NIC Username"
+            label="Official ID / Username"
             name="officialId"
             value={officialId}
             onChange={(e) => setOfficialId(e.target.value)}

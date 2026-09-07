@@ -26,10 +26,10 @@ export const Footer = () => {
               </div>
             </div>
             <p className="footer-mission-desc">
-              RecordSetu connects citizens, farmers, and administrators to authentic digitized land ownership data, geo-referenced cadastral maps, and paperless revenue services across India.
+              AbhilekhSetu is an intelligent land record digitization and validation prototype connecting citizens, farmers, and revenue administrators to authentic digitized records and automated OCR workflows.
             </p>
             <div className="footer-nic-badge">
-              <span>🇮🇳 Designed, Developed & Hosted by National Informatics Centre (NIC)</span>
+              <span>🇮🇳 AbhilekhSetu Prototype • SIH26018 Initiative</span>
             </div>
           </div>
 
@@ -66,22 +66,22 @@ export const Footer = () => {
               <div className="help-item">
                 <Phone size={15} className="help-icon" />
                 <div>
-                  <span className="help-label">National Toll-Free Helpline</span>
-                  <strong className="help-val">1800-11-2026</strong>
-                  <span className="help-timing">09:00 AM – 06:00 PM (Mon – Sat)</span>
+                  <span className="help-label">Prototype Evaluation Desk</span>
+                  <strong className="help-val">SIH 2026 Demonstration Desk</strong>
+                  <span className="help-timing">Academic / Evaluation Prototype Only</span>
                 </div>
               </div>
               <div className="help-item">
                 <Mail size={15} className="help-icon" />
                 <div>
-                  <span className="help-label">Official Support Email</span>
-                  <strong className="help-val">support-recordsetu@gov.in</strong>
+                  <span className="help-label">Prototype Project Support</span>
+                  <strong className="help-val">demo-support@abhilekhsetu.internal (Demo Sandbox)</strong>
                 </div>
               </div>
             </div>
             <div className="footer-secure-stamp">
               <ShieldCheck size={14} />
-              <span>256-Bit SSL Encrypted • IT Act 2000 Compliant</span>
+              <span>SIH 2026 Prototype Sandbox • For Evaluation Only</span>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export const Footer = () => {
         </div>
         <div className="container footer-legal-row">
           <p className="footer-copyright-note">
-            © 2026 RecordSetu • Department of Land Resources, Ministry of Rural Development, Government of India. All Rights Reserved.
+            © 2026 AbhilekhSetu • Department of Land Resources, Ministry of Rural Development, Government of India. All Rights Reserved.
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CitizenLoginPage.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { AshokaEmblem, RecordSetuLogo, TricolorRibbon } from '../assets/visuals';
+import { AshokaEmblem, AbhilekhSetuLogo, TricolorRibbon } from '../assets/visuals';
 import { 
   UserCheck, 
   Building2, 
@@ -80,13 +80,13 @@ export const CitizenLoginPage = () => {
             <div className="login-emblems-row">
               <AshokaEmblem width={38} height={52} />
               <div className="emblem-sep-line"></div>
-              <RecordSetuLogo width={44} height={44} />
+              <AbhilekhSetuLogo width={44} height={44} />
             </div>
             <span className="login-gov-dept-tag">
-              भारत सरकार • GOVERNMENT OF INDIA | NIC SSO PORTAL
+              भारत सरकार • GOVERNMENT OF INDIA | REVENUE GATEWAY
             </span>
             <h1 className="login-main-heading">
-              RecordSetu Central Gateway
+              AbhilekhSetu Gateway
             </h1>
             <p className="login-main-subtext">
               सिंगल साइन-ऑन (SSO) डिजिटल पहचान प्रणाली • Digital Revenue Access
@@ -269,11 +269,11 @@ export const CitizenLoginPage = () => {
 
           {/* Security Certifications Footer */}
           <div className="login-security-footer">
-            <span>🔒 256-Bit SSL Encrypted</span>
+            <span>🔒 Local Demo Environment</span>
             <span className="sec-sep">•</span>
-            <span>Cert-In Empanelled</span>
+            <span>AbhilekhSetu Prototype</span>
             <span className="sec-sep">•</span>
-            <span>NIC National Cloud</span>
+            <span>Government Integration — Future Scope</span>
           </div>
         </div>
       </div>

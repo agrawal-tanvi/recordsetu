@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
-import { AshokaEmblem, DigitalIndiaLogo, RecordSetuLogo } from '../../assets/visuals';
+import { AshokaEmblem, DigitalIndiaLogo, AbhilekhSetuLogo } from '../../assets/visuals';
 import { HelpCircle, Phone, User, LogOut } from 'lucide-react';
 
 export const Header = () => {
@@ -39,10 +39,10 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Center: RecordSetu Brand Logo */}
-        <Link to="/" className="portal-brand-center" title="RecordSetu Portal Home">
+        {/* Center: AbhilekhSetu Brand Logo */}
+        <Link to="/" className="portal-brand-center" title="AbhilekhSetu Portal Home">
           <div className="brand-logo-icon">
-            <RecordSetuLogo width={46} height={46} />
+            <AbhilekhSetuLogo width={46} height={46} />
           </div>
           <div className="brand-titles-block">
             <h1 className="portal-main-name">{t('portalName')}</h1>

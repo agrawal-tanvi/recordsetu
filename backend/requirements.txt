@@ -4,3 +4,9 @@ python-multipart
 pydantic
 sqlalchemy
 psycopg[binary]
+pytesseract
+opencv-python
+Pillow
+numpy
+pdf2image
+aiofiles

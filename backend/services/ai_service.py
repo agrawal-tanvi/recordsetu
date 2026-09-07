@@ -1,42 +1,87 @@
-from schemas.document import ExtractionResult, ExtractedFields, FieldValue
+import sys
+from pathlib import Path
+
+from schemas.document import (
+    ExtractionResult,
+    ExtractedFields,
+    FieldValue,
+)
+
+# Add the RecordSetu project root so the sibling `ai/` package
+# can be imported when FastAPI is run from the backend directory.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from ai.src.main import run_pipeline
+from ai.src.pdf import process_pdf
 
 
-def process_document(document_id: str, file_path: str) -> ExtractionResult:
-    """
-    Temporary mock AI/OCR adapter.
+def make_field(value, confidence):
+    return FieldValue(
+        value=None if value is None else str(value),
+        confidence=float(confidence) if value is not None else 0.0,
+    )
 
-    This simulates the output that the real OCR + entity extraction
-    pipeline will eventually provide.
 
-    Replace this implementation when the AI pipeline is ready.
-    """
+def process_document(
+    document_id: str,
+    file_path: str,
+) -> ExtractionResult:
+
+    path = Path(file_path)
+
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Document not found: {file_path}"
+        )
+
+    suffix = path.suffix.lower()
+
+    if suffix in {".png", ".jpg", ".jpeg"}:
+        result = run_pipeline(str(path))
+        fields = result["fields"]
+        confidence = result["ocr_confidence"]
+
+    elif suffix == ".pdf":
+        result = process_pdf(str(path))
+        pages = result.get("pages", [])
+
+        if not pages:
+            raise ValueError("No processable pages found in PDF.")
+
+        best_page = max(
+            pages,
+            key=lambda page: page["fields"].get("confidence", 0.0)
+        )
+
+        fields = best_page["fields"]
+        confidence = best_page.get("ocr_confidence", 0.0)
+
+    else:
+        raise ValueError(f"Unsupported document type: {suffix}")
 
     return ExtractionResult(
         document_id=document_id,
         fields=ExtractedFields(
-            khasra_no=FieldValue(
-                value="125",
-                confidence=0.97,
+            khasra_no=make_field(
+                fields.get("khasra_no"), confidence
             ),
-            owner_name=FieldValue(
-                value="Ram Kumar",
-                confidence=0.93,
+            owner_name=make_field(
+                fields.get("owner_name"), confidence
             ),
-            village=FieldValue(
-                value="Sikandra",
-                confidence=0.89,
+            village=make_field(
+                fields.get("village"), confidence
             ),
-            district=FieldValue(
-                value="Agra",
-                confidence=0.95,
+            district=make_field(
+                fields.get("district"), confidence
             ),
-            area=FieldValue(
-                value="2.5",
-                confidence=0.91,
+            area=make_field(
+                fields.get("area"), confidence
             ),
-            area_unit=FieldValue(
-                value="hectare",
-                confidence=0.98,
+            area_unit=make_field(
+                fields.get("area_unit"), confidence
             ),
         ),
     )

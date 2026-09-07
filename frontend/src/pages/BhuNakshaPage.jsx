@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import './BhuNakshaPage.css';
 import { 
   MapPin, 
@@ -17,8 +17,10 @@ import {
 } from 'lucide-react';
 
 export const BhuNakshaPage = () => {
+  const [searchParams] = useSearchParams();
+  const plotParam = searchParams.get('plot');
   const [mapLayer, setMapLayer] = useState('cadastral'); // 'cadastral', 'satellite', 'hybrid'
-  const [selectedPlotId, setSelectedPlotId] = useState('45/2');
+  const [selectedPlotId, setSelectedPlotId] = useState(plotParam || '45/2');
   const [zoomLevel, setZoomLevel] = useState(1);
 
   const plotsData = {
@@ -129,8 +131,8 @@ export const BhuNakshaPage = () => {
             <button type="button" className="btn btn-outline btn-sm" onClick={() => window.print()}>
               <Printer size={15} /> Print Map
             </button>
-            <button type="button" className="btn btn-primary btn-sm" onClick={() => alert('Downloading high-resolution Cadastral Map (PDF)...')}>
-              <Download size={15} /> Download Map (PDF)
+            <button type="button" className="btn btn-primary btn-sm" onClick={() => window.print()}>
+              <Download size={15} /> Save / Print (PDF)
             </button>
           </div>
         </div>
@@ -453,13 +455,13 @@ export const BhuNakshaPage = () => {
 
               {/* Action Buttons */}
               <div className="inspector-action-buttons">
-                <Link to="/land-records/search" className="btn btn-primary btn-sm btn-full-action">
+                <Link to={`/land-records/search?q=${encodeURIComponent(currentPlot.id)}`} className="btn btn-primary btn-sm btn-full-action">
                   <FileText size={15} />
-                  <span>अधिकार अभिलेख देखें (View RoR)</span>
+                  <span>अधिकार अभिलेख देखें (Search Plot {currentPlot.id})</span>
                 </Link>
-                <Link to="/verify" className="btn btn-outline btn-sm btn-full-action">
+                <Link to="/review-queue" className="btn btn-outline btn-sm btn-full-action">
                   <ShieldCheck size={15} />
-                  <span>डिजिटल सत्यापन (Verify Online)</span>
+                  <span>समीक्षा कतार (Review Queue)</span>
                 </Link>
               </div>
 

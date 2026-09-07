@@ -107,10 +107,10 @@ export const CitizenDashboardPage = () => {
                   <div><span>Classification:</span> Agricultural</div>
                 </div>
                 <div className="holding-actions-bar">
-                  <Link to="/land-records/1" className="btn btn-outline btn-sm">
+                  <Link to="/land-records/search?q=45/2" className="btn btn-outline btn-sm">
                     <FileText size={13} /> View RoR 7/12
                   </Link>
-                  <Link to="/maps" className="btn btn-outline btn-sm">
+                  <Link to="/maps?plot=45/2" className="btn btn-outline btn-sm">
                     <Map size={13} /> Inspect on Map
                   </Link>
                 </div>
@@ -132,10 +132,10 @@ export const CitizenDashboardPage = () => {
                   <div><span>Classification:</span> Agricultural</div>
                 </div>
                 <div className="holding-actions-bar">
-                  <Link to="/land-records/2" className="btn btn-outline btn-sm">
+                  <Link to="/land-records/search?q=124/2" className="btn btn-outline btn-sm">
                     <FileText size={13} /> View RoR 7/12
                   </Link>
-                  <Link to="/maps" className="btn btn-outline btn-sm">
+                  <Link to="/maps?plot=124/2" className="btn btn-outline btn-sm">
                     <Map size={13} /> Inspect on Map
                   </Link>
                 </div>

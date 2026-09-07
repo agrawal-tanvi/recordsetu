@@ -97,22 +97,22 @@ const RecordDetails = ({ record }) => {
       <div className="doc-footer-stamp">
         <div>
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            Digital Signature Token: <strong>{record.digitalSignature || 'CERT-IN-NIC-UP-98214B87A'}</strong>
+            Record Reference: <strong>{record.digitalSignature || 'ABHILEKH-DEMO-REF-001'}</strong>
           </div>
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
             ULPIN Coordinates: <strong>{record.coordinates || '26.8524° N, 80.9982° E'}</strong>
           </div>
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-            Document authenticated under IT Act 2000. No physical revenue officer signature required.
+            AbhilekhSetu Prototype Record. Digitized and validated from source document.
           </div>
         </div>
 
         <div style={{ textAlign: 'center', border: '1px solid var(--border-color)', padding: '8px 14px', borderRadius: '6px', background: 'var(--light-bg)' }}>
           <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', fontWeight: 700, color: 'var(--government-blue)' }}>
-            Verification Seal
+            Digitized Record
           </div>
           <div style={{ fontWeight: 800, color: 'var(--primary-navy)', fontSize: '0.9rem' }}>
-            RECORDSETU NIC
+            ABHILEKHSETU
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       id: "CITIZEN-98214",
       name: "Rajesh Kumar",
       mobile: mobile || "9876543210",
-      email: "rajesh.kumar@example.gov.in",
+      email: "rajesh.kumar@example.com",
       role: "citizen",
       state: "Uttar Pradesh",
       district: "Lucknow",

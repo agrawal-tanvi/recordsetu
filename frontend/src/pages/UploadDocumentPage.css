@@ -19,7 +19,7 @@
 
 .upload-stage-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1.25fr;
   gap: 1.5rem;
   align-items: start;
 }
@@ -204,4 +204,13 @@
   .upload-stage-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.spinner-rotate {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

@@ -172,7 +172,7 @@ def review_document(
         )
 
     # ---------------------------------------------
-    # Fields that can be corrected
+    # Fields that can be corrected or confirmed
     # ---------------------------------------------
 
     fields = [
@@ -184,126 +184,141 @@ def review_document(
         "area_unit",
     ]
 
+    confidence_attr_map = {
+        "khasra_no": "khasra_confidence",
+        "owner_name": "owner_confidence",
+        "village": "village_confidence",
+        "district": "district_confidence",
+        "area": "area_confidence",
+        "area_unit": "area_unit_confidence",
+    }
+
+    reviewed_fields = set()
     changes = []
 
     # ---------------------------------------------
-    # Apply only fields explicitly provided
+    # Apply corrections or confirmations explicitly provided
     # ---------------------------------------------
 
     for field_name in fields:
 
         new_value = getattr(update, field_name)
 
-        # None means reviewer did not modify this field
+        # None means reviewer did not inspect/submit this field
         if new_value is None:
             continue
 
+        reviewed_fields.add(field_name)
+
         # Area validation
-        if field_name == "area" and new_value <= 0:
-            raise HTTPException(
-                status_code=400,
-                detail="Area must be greater than zero.",
-            )
+        if field_name == "area":
+            try:
+                area_num = float(new_value)
+                if area_num <= 0:
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Area must be greater than zero.",
+                    )
+            except (ValueError, TypeError):
+                raise HTTPException(
+                    status_code=400,
+                    detail="Area must be a valid number.",
+                )
 
         old_value = getattr(land_record, field_name)
+        conf_attr = confidence_attr_map.get(field_name)
+        old_conf = getattr(land_record, conf_attr, 0.0) if conf_attr else 0.0
 
-        # Only create an audit record when value actually changes
-        if str(old_value) != str(new_value):
+        old_str = str(old_value) if old_value is not None else None
+        new_str = str(new_value) if new_value is not None else None
 
+        if old_str != new_str:
+            # Field value was corrected by reviewer
             setattr(
                 land_record,
                 field_name,
                 new_value,
             )
+            if conf_attr:
+                setattr(land_record, conf_attr, 1.0)
 
-            changes.append(
-                {
-                    "field_name": field_name,
-                    "old_value": (
-                        str(old_value)
-                        if old_value is not None
-                        else None
-                    ),
-                    "new_value": str(new_value),
-                }
-            )
+            change_entry = {
+                "field_name": field_name,
+                "old_value": old_str,
+                "new_value": new_str,
+                "action": "CORRECTED",
+            }
+            changes.append(change_entry)
 
-            # -------------------------------------
-            # Audit log
-            # -------------------------------------
-
+            # Audit log for correction
             db.add(
                 AuditLog(
                     document_id=document_id,
                     field_name=field_name,
-                    old_value=(
-                        str(old_value)
-                        if old_value is not None
-                        else None
-                    ),
-                    new_value=str(new_value),
+                    old_value=old_str,
+                    new_value=new_str,
                     action="CORRECTED",
                     actor=update.reviewer,
                 )
             )
+        else:
+            # Field value was confirmed as-is by official reviewer
+            # If the value had low confidence (< 1.0), human confirmation resolves it
+            if old_conf < 1.0:
+                if conf_attr:
+                    setattr(land_record, conf_attr, 1.0)
+
+                change_entry = {
+                    "field_name": field_name,
+                    "old_value": old_str,
+                    "new_value": new_str,
+                    "action": "CONFIRMED",
+                }
+                changes.append(change_entry)
+
+                # Audit log for confirmation
+                db.add(
+                    AuditLog(
+                        document_id=document_id,
+                        field_name=field_name,
+                        old_value=old_str,
+                        new_value=new_str,
+                        action="CONFIRMED",
+                        actor=update.reviewer,
+                    )
+                )
 
     # ---------------------------------------------
-    # At least one change must be made
+    # Re-validate after human correction/confirmation
     # ---------------------------------------------
 
-    if not changes:
-        raise HTTPException(
-            status_code=400,
-            detail="No changes were provided for review.",
-        )
+    def make_field(field_name, value):
+        conf_attr = confidence_attr_map.get(field_name)
+        if field_name in reviewed_fields:
+            conf = 1.0
+        elif conf_attr:
+            conf = getattr(land_record, conf_attr, 0.0)
+        else:
+            conf = 0.0
 
-       # ---------------------------------------------
-    # Re-validate after human correction
-    # ---------------------------------------------
-
-    def make_field(value, confidence):
         return FieldValue(
             value=str(value) if value is not None else None,
-            confidence=confidence,
+            confidence=conf,
         )
 
     corrected_extraction = ExtractionResult(
         document_id=document_id,
         fields=ExtractedFields(
-            khasra_no=make_field(
-                land_record.khasra_no,
-                1.0 if "khasra_no" in [c["field_name"] for c in changes]
-                else land_record.khasra_confidence,
-            ),
-            owner_name=make_field(
-                land_record.owner_name,
-                1.0 if "owner_name" in [c["field_name"] for c in changes]
-                else land_record.owner_confidence,
-            ),
-            village=make_field(
-                land_record.village,
-                1.0 if "village" in [c["field_name"] for c in changes]
-                else land_record.village_confidence,
-            ),
-            district=make_field(
-                land_record.district,
-                1.0 if "district" in [c["field_name"] for c in changes]
-                else land_record.district_confidence,
-            ),
-            area=make_field(
-                land_record.area,
-                1.0 if "area" in [c["field_name"] for c in changes]
-                else land_record.area_confidence,
-            ),
-            area_unit=make_field(
-                land_record.area_unit,
-                1.0 if "area_unit" in [c["field_name"] for c in changes]
-                else land_record.area_unit_confidence,
-            ),
+            khasra_no=make_field("khasra_no", land_record.khasra_no),
+            owner_name=make_field("owner_name", land_record.owner_name),
+            village=make_field("village", land_record.village),
+            district=make_field("district", land_record.district),
+            area=make_field("area", land_record.area),
+            area_unit=make_field("area_unit", land_record.area_unit),
         ),
     )
 
-    validation = validate_extraction(corrected_extraction)
+    validation = validate_extraction(corrected_extraction, db=db)
 
     # ---------------------------------------------
     # Save second validation result

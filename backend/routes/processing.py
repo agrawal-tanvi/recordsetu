@@ -18,7 +18,8 @@ router = APIRouter(
 )
 
 
-UPLOAD_DIR = Path("uploads")
+UPLOAD_DIR = Path(__file__).resolve().parent.parent / "uploads"
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 
 @router.post(
@@ -63,7 +64,7 @@ async def process_uploaded_document(
         file_path=str(file_path),
     )
 
-    validation = validate_extraction(extraction)
+    validation = validate_extraction(extraction, db=db)
 
     fields = extraction.fields
 

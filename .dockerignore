@@ -1,0 +1,51 @@
+# =============================================================
+# AbhilekhSetu — Docker Ignore Configuration (Unified Container)
+# =============================================================
+
+# Version control
+.git/
+.gitignore
+
+# Frontend local dependencies and local build outputs
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# Python bytecode & virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+ENV/
+env/
+
+# Root/backend node dependencies
+node_modules/
+
+# Local SQLite databases & runtime uploads
+*.db
+backend/recordsetu.db
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# AI batch outputs & large sample scans
+ai/output/
+ai/samples/*.png
+ai/samples/*.pdf
+
+# Local test harnesses & developer documentation
+backend/test_*.py
+RECORDSETU_IMPLEMENTATION_MAP.md
+validation/
+
+# Environment files, IDE & OS artifacts
+.env
+.env.*
+.vscode/
+.idea/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

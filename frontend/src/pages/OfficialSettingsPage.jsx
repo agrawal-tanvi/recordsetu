@@ -50,7 +50,7 @@ const OfficialSettingsPage = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem' }}>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <input type="checkbox" defaultChecked />
-                  <span>NIC Official Email Alert</span>
+                  <span>Official Email Alert</span>
                 </label>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <input type="checkbox" defaultChecked />

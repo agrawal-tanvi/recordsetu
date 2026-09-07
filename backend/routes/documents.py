@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 
-UPLOAD_DIR = Path("uploads")
+UPLOAD_DIR = Path(__file__).resolve().parent.parent / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".pdf", ".jpg", ".jpeg", ".png"}

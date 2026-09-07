@@ -26,11 +26,11 @@ const VerifyPage = () => {
         <div className="container">
           <div className="gov-badge-emblem" style={{ background: 'rgba(255,255,255,0.1)', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)', marginBottom: '0.75rem' }}>
             <ShieldCheck size={14} />
-            <span>AUTHORITATIVE CERTIFICATION VALIDATOR</span>
+            <span>PROTOTYPE RECORD VALIDATOR</span>
           </div>
           <h1>Digital Land Record Verification</h1>
           <p>
-            Authenticate the legal validity, digital signature hash and cadastral coordinates of any RecordSetu document.
+            Authenticate verification status, validation audit trail, and local coordinates for any AbhilekhSetu record.
           </p>
         </div>
       </div>
@@ -66,7 +66,7 @@ const VerifyPage = () => {
                 <CheckCircle2 size={36} />
               </div>
               <span className="badge badge-verified" style={{ fontSize: '0.88rem', padding: '0.35rem 0.85rem' }}>
-                AUTHENTIC & VERIFIED GOVERNMENT RECORD
+                VERIFIED PROTOTYPE RECORD
               </span>
               <h2 style={{ fontSize: '1.6rem', color: 'var(--primary-navy)', marginTop: '0.5rem' }}>
                 {result.id} — {result.ownerName}
@@ -102,18 +102,18 @@ const VerifyPage = () => {
 
             <div style={{ background: 'var(--light-bg)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem', fontSize: '0.85rem' }}>
               <div style={{ fontWeight: 700, color: 'var(--primary-navy)', marginBottom: '4px' }}>
-                Cryptographic Signature Metadata:
+                Prototype Verification Metadata:
               </div>
-              <div>Digital Certificate: <strong>{result.digitalSignature}</strong></div>
+              <div>Record Hash / Reference: <strong>{result.digitalSignature}</strong></div>
               <div>Timestamp of Verification: <strong>{new Date().toLocaleString()}</strong></div>
-              <div>Issuing Authority: <strong>Sub-Divisional Revenue Magistrate, Govt. of India</strong></div>
+              <div>Scope / Authority: <strong>AbhilekhSetu Local Demo Dataset</strong></div>
             </div>
           </div>
         ) : searched ? (
           <div className="card" style={{ maxWidth: '650px', margin: '0 auto', textAlign: 'center', padding: '3rem 2rem' }}>
             <h2 style={{ color: 'var(--danger)', marginBottom: '0.5rem' }}>Record Not Verified</h2>
             <p style={{ color: 'var(--text-muted)' }}>
-              No authentic land record corresponding to identifier <strong>{recordId}</strong> was located in the National Land Registry repository.
+              No land record corresponding to identifier <strong>{recordId}</strong> was located in the AbhilekhSetu prototype dataset.
             </p>
           </div>
         ) : null}
